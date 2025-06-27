@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
 import { Globe, Code, Smartphone, Palette, Zap, Mail, Menu, X } from "lucide-react"
 import Image from "next/image"
+import Beams from "@/components/beams"
 
 export default function OmegonLanding() {
   const [language, setLanguage] = useState<"es" | "en">("es")
@@ -222,25 +223,6 @@ export default function OmegonLanding() {
         />
       ))}
 
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#17261E]/20 via-black to-[#548C45]/10" />
-        {/* Floating particles */}
-        {[...Array(10)].map((_, i) => (
-        
-           <div
-  key={i}
-  className="absolute w-1 h-1 bg-[#EDF252]/30 rounded-full"
-  style={{
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    animation: `slowPulse ${80 + Math.random() * 40}s ease-in-out infinite`,
-    animationDelay: `${Math.random() * 40}s`,
-  }}
-/>
-        ))}
-      </div>
-
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-black/20 border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
@@ -310,7 +292,21 @@ export default function OmegonLanding() {
 
       {/* Hero Section */}
       <section className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-20">
-        <div className="container mx-auto text-center">
+        {/* Beams Background */}
+        <div className="absolute inset-0 z-0 opacity-30">
+          <Beams
+            beamWidth={2}
+            beamHeight={15}
+            beamNumber={12}
+            lightColor="#EDF252"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={0}
+          />
+        </div>
+
+        <div className="container mx-auto text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">{currentContent.hero.title}</h1>
 
@@ -478,7 +474,7 @@ export default function OmegonLanding() {
                   type="submit"
                   className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
                 >
-                  <Mail className="w-4 h-4 mr-2" />
+                  <Mail className="w-4 w-4 mr-2" />
                   {currentContent.contact.form.submit}
                 </Button>
               </form>
