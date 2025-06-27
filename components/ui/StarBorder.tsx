@@ -52,4 +52,3 @@ const StarBorder = <T extends React.ElementType = "button">({
 };
 
 export default StarBorder;
-
