@@ -7,7 +7,35 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
 import { Globe, Code, Smartphone, Palette, Zap, Mail, Menu, X } from "lucide-react"
 import Image from "next/image"
-import Beams from "@/components/beams"
+import  StarBorder  from "@/components/ui/StarBorder"
+import { ThreeDLogoCarousel} from "@/components/ui/3d-carousel"
+
+const projects = [
+  {
+    id: 1,
+    title: "Yamila Velay",
+    description:
+      "Identidad visual espiritual y funcionalidad personalizada para una terapeuta holística.",
+    imageUrl: "/assets/projects/yami.svg",
+    link: "https://yamila-velay-landing.vercel.app/",
+  },
+  {
+    id: 2,
+    title: "Lead Magnet",
+    description:
+      "Proyecto con diseño simple fluido para empresa de IA & automation.",
+    imageUrl: "/assets/telefono.png",
+    link: "https://aiqwavelabscom.vercel.app/",
+  },
+  {
+    id: 3,
+    title: "AIAssist",
+    description:
+      "Diseño moderno para empresa de seguros de mobiles.",
+    imageUrl: "/assets/telefono.png",
+    link: "https://iassist-xi.vercel.app/",
+  },
+]
 
 export default function OmegonLanding() {
   const [language, setLanguage] = useState<"es" | "en">("es")
@@ -84,10 +112,12 @@ export default function OmegonLanding() {
           },
         ],
       },
-      projects: {
+      project: {
         title: "Proyectos Destacados",
         subtitle: "Algunos de nuestros trabajos más recientes",
+        button: "Ver Proyecto",
       },
+      projects,
       about: {
         title: "Quiénes Somos",
         subtitle: "Diseñamos con propósito, desarrollamos con precisión.",
@@ -154,9 +184,10 @@ export default function OmegonLanding() {
           },
         ],
       },
-      projects: {
+      project: {
         title: "Featured Projects",
         subtitle: "Some of our most recent work",
+        button: "View Project",
       },
       about: {
         title: "Who We Are",
@@ -291,104 +322,129 @@ export default function OmegonLanding() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-20">
-        {/* Beams Background */}
-        <div className="absolute inset-0 z-0 opacity-30">
-          <Beams
-            beamWidth={2}
-            beamHeight={15}
-            beamNumber={12}
-            lightColor="#EDF252"
-            speed={2}
-            noiseIntensity={1.75}
-            scale={0.2}
-            rotation={0}
-          />
+ <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-20">
+  {/* Fondo dinámico Beams + Scene */}
+  <div className="absolute inset-0 z-0">
+ {/*   <Beams
+      beamWidth={2}
+      beamHeight={15}
+      beamNumber={12}
+      lightColor="#EDF252"
+      speed={2}
+      noiseIntensity={1.75}
+      scale={0.2}
+      rotation={0}
+    /> */} 
+{/*      <Scene /> */}
+   </div>
+
+  {/* Contenido central */}
+  <div className="w-full max-w-6xl space-y-12 relative z-10">
+    <div className="flex flex-col items-center text-center space-y-8">
+      <div className="space-y-6 flex items-center justify-center flex-col">
+        <h1 className="text-3xl md:text-6xl font-bold tracking-tight max-w-3xl">
+          {currentContent.hero.title}
+        </h1>
+        <p className="text-lg text-neutral-300 max-w-2xl">
+          {currentContent.hero.description}
+        </p>
+
+
+<div className="flex flex-wrap justify-center gap-3 mt-4">
+  {currentContent.hero.tags.map((tag, index) => (
+    <StarBorder
+      key={index}
+      as="button"
+      className="px-4 py-2 rounded-full text-[#7ABF5A] text-sm font-medium backdrop-blur-sm"
+      color="cyan"
+      speed="5s"
+    >
+      {tag}
+    </StarBorder>
+  ))}
+</div>
+
+
+        <div className="flex flex-col sm:flex-row gap-4 items-center pt-6">
+          <Button
+            className="text-sm px-8 py-3 rounded-xl bg-[#EDF252] text-black font-semibold border border-white/10 hover:bg-[#EDF252]/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            {currentContent.hero.cta}
+          </Button>
+          
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div className="container mx-auto text-center relative z-10">
-          <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">{currentContent.hero.title}</h1>
 
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              {currentContent.hero.description}
-            </p>
+    {/* Service Section */}
+<section id="services" className="relative z-10 py-8 px-6">
+  <div className="container mx-auto">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.services.title}</h2>
+    </div>
 
-            <div className="flex flex-wrap justify-center gap-3 mt-8">
-              {currentContent.hero.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 rounded-full backdrop-blur-sm bg-[#17261E]/40 border border-[#548C45]/30 text-[#7ABF5A] text-sm font-medium hover:bg-[#17261E]/60 transition-all duration-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+      {currentContent.services.items.map((feature, index) => {
+        const icons = [Globe, Smartphone, Palette, Zap];
+        const Icon = icons[index];
 
-            <div className="pt-8">
-              <Button
-                size="lg"
-                className="bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                {currentContent.hero.cta}
-              </Button>
-            </div>
+        return (
+          <div
+            key={index}
+            className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl p-4 md:p-6 h-40 md:h-48 flex flex-col justify-start items-start space-y-2 md:space-y-3 group transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/20"
+          >
+            <Icon className="text-white/80 md:w-5 md:h-5 group-hover:text-[#EDF252]" />
+            <h3 className="text-sm md:text-base font-medium text-white">{feature.title}</h3>
+            <p className="text-xs md:text-sm text-neutral-400">{feature.description}</p>
           </div>
+        );
+      })}
+    </div>
+    <div className="p-2">
+          <ThreeDLogoCarousel />
         </div>
-      </section>
+  </div>
+</section>
 
-      {/* Services Section */}
-      <section id="services" className="relative z-10 py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.services.title}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {currentContent.services.items.map((service, index) => {
-              const icons = [Globe, Smartphone, Palette, Zap]
-              const Icon = icons[index]
-
-              return (
-                <Card
-                  key={index}
-                  className="p-6 backdrop-blur-md bg-black/20 border border-[#EDF252] hover:bg-black/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25 group"
-                >
-                  <div className="text-center space-y-4">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-                      <Icon className="w-8 h-8 text-[#EDF252] group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white">{service.title}</h3>
-                    <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
-                  </div>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Projects Section */}
       <section id="projects" className="relative z-10 py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.projects.title}</h2>
-            <p className="text-gray-400 text-lg">{currentContent.projects.subtitle}</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.project.title}</h2>
+            <p className="text-gray-400 text-lg">{currentContent.project.subtitle}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((project) => (
+            {projects.map((project) => (
               <Card
-                key={project}
+                key={project.id}
                 className="aspect-video backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#548C45]/20 group overflow-hidden"
               >
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center space-y-2">
                     <Code className="w-12 h-12 mx-auto text-[#7ABF5A] group-hover:text-[#EDF252] transition-colors duration-300" />
-                    <h3 className="text-lg font-semibold">Proyecto {project}</h3>
-                    <p className="text-gray-400 text-sm">Próximamente</p>
-                  </div>
+                    <h3 className="text-lg font-semibold">Proyecto {project.title}</h3>
+                    <p className="text-gray-400 text-sm m-4">{project.description}</p>
+            <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] mt-2"
+                >
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                Ver Proyecto
+                  </a>
+                </Button>
+                        </div>
                 </div>
               </Card>
             ))}
@@ -491,7 +547,7 @@ export default function OmegonLanding() {
             <span className="text-xl font-bold">Omegon</span>
           </div>
           <p className="text-gray-400 text-sm">
-            © 2024 Omegon. {language === "es" ? "Todos los derechos reservados." : "All rights reserved."}
+            © 2025 Omegon. {language === "es" ? "Todos los derechos reservados." : "All rights reserved."}
           </p>
         </div>
       </footer>
