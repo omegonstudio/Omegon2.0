@@ -1,29 +1,52 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Exo_2 } from "next/font/google"
-import "./globals.css"
+import './globals.css';
+import { Exo } from 'next/font/google';
+import type { Metadata } from 'next';
+import Providers from './providers';
 
-const exo2 = Exo_2({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-  variable: "--font-exo2",
-})
+const exo = Exo({
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-exo-sans',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.dev",
-}
+  title: 'OMEGON',
+  description: 'Diseñamos con propósito, desarrollamos con precisión.',
+  viewport: 'width=device-width, initial-scale=1.0',
+  keywords: [
+    'Tecnología', 'UX/UI', 'Desarrollo Web', 'Software', 'IA', 'Transformación Digital'
+  ],
+  openGraph: {
+    title: 'OMEGON',
+    description: 'Diseñamos con propósito, desarrollamos con precisión.',
+    url: 'https://omegon.com.ar',
+    siteName: 'OMEGON',
+    images: [
+      {
+        url: 'https://omegon.com.ar/assets/logos/logo_omegon.jpg',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OMEGON',
+    description: 'Diseñamos con propósito, desarrollamos con precisión.',
+    images: ['https://omegon.com.ar/assets/logos/logo_omegon.jpg'],
+  },
+  generator: 'v0.dev',
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${exo2.variable}`}>
-      <body className="min-h-screen bg-black text-white font-sans antialiased">{children}</body>
+    <html lang="es" className={exo.variable}>
+      <body className="min-h-screen bg-black text-white font-sans antialiased">
+         <Providers>
+         {children}
+        </Providers>
+     </body>
     </html>
-  )
+  );
 }

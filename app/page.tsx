@@ -381,7 +381,7 @@ export default function OmegonLanding() {
 
 
     {/* Service Section */}
-<section id="services" className="relative z-10 py-8 px-6">
+<section id="services" className="relative z-10 pt-20 px-6">
   <div className="container mx-auto">
     <div className="text-center mb-16">
       <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.services.title}</h2>
@@ -412,7 +412,7 @@ export default function OmegonLanding() {
 
 
       {/* Projects Section */}
-      <section id="projects" className="relative z-10 py-20 px-6">
+      <section id="projects" className="relative z-10 pt-5 pb-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.project.title}</h2>

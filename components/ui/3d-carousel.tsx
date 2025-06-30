@@ -58,14 +58,14 @@ export function useMediaQuery(
 
 // Simula íconos de tecnologías (reemplazá por tus rutas)
 const logos = [
-  "/logos/react.svg",
-  "/logos/n8n.svg",
-  "/logos/make.svg",
-  "/logos/tailwind.svg",
-  "/logos/nextjs.svg",
+  "/logos/JS.svg",
+  "/logos/REACT.svg",
+  "/logos/NEXT.svg",
+  "/logos/Node.svg",
   "/logos/ts.svg",
-  "/logos/node.svg",
-  "/logos/github.svg",
+  "/logos/N8N.svg",
+  "/logos/MAKE.svg",
+
 ]
 
 const Carousel = memo(

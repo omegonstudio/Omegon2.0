@@ -95,7 +95,7 @@ const config: Config = {
         "star-movement-top": "star-movement-top linear infinite alternate",
       },
       fontFamily: {
-        sans: ["var(--font-exo2)", "system-ui", "sans-serif"],
+        sans: ["var(--font-exo-sans)", "system-ui", "sans-serif"],
       },
     },
   },
