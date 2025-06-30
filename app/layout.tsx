@@ -36,12 +36,14 @@ export const metadata: Metadata = {
     description: 'Diseñamos con propósito, desarrollamos con precisión.',
     images: ['https://omegon.com.ar/assets/logos/logo_omegon.jpg'],
   },
-  generator: 'v0.dev',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={exo.variable}>
+      <head>
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+      </head>
       <body className="min-h-screen bg-black text-white font-sans antialiased">
          <Providers>
          {children}

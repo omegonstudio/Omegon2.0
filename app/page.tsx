@@ -9,6 +9,15 @@ import { Globe, Code, Smartphone, Palette, Zap, Mail, Menu, X } from "lucide-rea
 import Image from "next/image"
 import  StarBorder  from "@/components/ui/StarBorder"
 import { ThreeDLogoCarousel} from "@/components/ui/3d-carousel"
+import CalendlyModal from "@/components/Calendly/CalendyModal"
+
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import sendEmail from "@/app/services/emailjs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Beams from "@/components/beams"
+
 
 const projects = [
   {
@@ -44,6 +53,38 @@ export default function OmegonLanding() {
   const [cursorTrail, setCursorTrail] = useState<Array<{ x: number; y: number; id: number }>>([])
   const cursorRef = useRef<HTMLDivElement>(null)
   const trailIdRef = useRef(0)
+
+  const formRef = useRef<HTMLFormElement>(null);
+const [openCalendly, setOpenCalendly] = useState(false);
+const calendlyUrl = "https://calendly.com/omegon-info/30min";
+
+const validationSchema = Yup.object({
+  name: Yup.string().required("El nombre es obligatorio"),
+  email: Yup.string().email("Email inválido").required("El email es obligatorio"),
+  message: Yup.string().required("El mensaje es obligatorio"),
+});
+
+const formik = useFormik({
+  initialValues: {
+    name: "",
+    email: "",
+    message: "",
+  },
+  validationSchema,
+  onSubmit: async (values, { resetForm, setSubmitting }) => {
+    const success = await sendEmail(formRef.current);
+
+    if (success) {
+      toast.success("¡Mensaje enviado con éxito!");
+      resetForm();
+    } else {
+      toast.error("Error al enviar el mensaje. Inténtalo de nuevo.");
+    }
+
+    setSubmitting(false);
+  },
+});
+
 
   // Custom cursor tracking
   useEffect(() => {
@@ -323,9 +364,8 @@ export default function OmegonLanding() {
 
       {/* Hero Section */}
  <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-20">
-  {/* Fondo dinámico Beams + Scene */}
   <div className="absolute inset-0 z-0">
- {/*   <Beams
+  <Beams
       beamWidth={2}
       beamHeight={15}
       beamNumber={12}
@@ -334,7 +374,7 @@ export default function OmegonLanding() {
       noiseIntensity={1.75}
       scale={0.2}
       rotation={0}
-    /> */} 
+    /> 
 {/*      <Scene /> */}
    </div>
 
@@ -380,77 +420,88 @@ export default function OmegonLanding() {
 </section>
 
 
-    {/* Service Section */}
-<section id="services" className="relative z-10 pt-20 px-6">
+{/* Service Section */}
+<section id="services" className="relative z-10 pt-20 px-4 sm:px-6">
   <div className="container mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.services.title}</h2>
+    <div className="text-center mb-12 sm:mb-16">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+        {currentContent.services.title}
+      </h2>
     </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-6xl mx-auto">
       {currentContent.services.items.map((feature, index) => {
         const icons = [Globe, Smartphone, Palette, Zap];
-        const Icon = icons[index];
+        const Icon = icons[index % icons.length]; // safety for >4 items
 
         return (
           <div
             key={index}
-            className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl p-4 md:p-6 h-40 md:h-48 flex flex-col justify-start items-start space-y-2 md:space-y-3 group transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/20"
+            className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 md:p-6 min-h-[160px] flex flex-col justify-start items-start space-y-2 sm:space-y-3 group transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/20"
           >
-            <Icon className="text-white/80 md:w-5 md:h-5 group-hover:text-[#EDF252]" />
-            <h3 className="text-sm md:text-base font-medium text-white">{feature.title}</h3>
-            <p className="text-xs md:text-sm text-neutral-400">{feature.description}</p>
+            <Icon className="text-white/80 w-5 h-5 group-hover:text-[#EDF252]" />
+            <h3 className="text-sm sm:text-base font-medium text-white">{feature.title}</h3>
+            <p className="text-xs sm:text-sm text-neutral-400">{feature.description}</p>
           </div>
         );
       })}
     </div>
-    <div className="p-2">
-          <ThreeDLogoCarousel />
-        </div>
+
+    <div className="mt-10 p-2">
+      <ThreeDLogoCarousel />
+    </div>
   </div>
 </section>
 
 
-      {/* Projects Section */}
-      <section id="projects" className="relative z-10 pt-5 pb-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.project.title}</h2>
-            <p className="text-gray-400 text-lg">{currentContent.project.subtitle}</p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <Card
-                key={project.id}
-                className="aspect-video backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#548C45]/20 group overflow-hidden"
+{/* Projects Section */}
+<section id="projects" className="relative z-10 pt-8 pb-20 px-4 sm:px-6">
+  <div className="container mx-auto">
+    <div className="text-center mb-12 sm:mb-16">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+        {currentContent.project.title}
+      </h2>
+      <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+        {currentContent.project.subtitle}
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {projects.map((project) => (
+        <Card
+          key={project.id}
+          className="aspect-[4/3] sm:aspect-video backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#548C45]/20 group overflow-hidden"
+        >
+          <div className="w-full h-full flex items-center justify-center p-4 sm:p-6">
+            <div className="text-center space-y-3">
+              <Code className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-[#7ABF5A] group-hover:text-[#EDF252] transition-colors duration-300" />
+              <h3 className="text-base sm:text-lg font-semibold text-white">
+                 {project.title}
+              </h3>
+              <p className="text-sm sm:text-base text-gray-400">{project.description}</p>
+              <Button
+                asChild
+                variant="outline"
+                className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] transition mt-2"
               >
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                    <Code className="w-12 h-12 mx-auto text-[#7ABF5A] group-hover:text-[#EDF252] transition-colors duration-300" />
-                    <h3 className="text-lg font-semibold">Proyecto {project.title}</h3>
-                    <p className="text-gray-400 text-sm m-4">{project.description}</p>
-            <Button
-                  asChild
-                  variant="outline"
-                  className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] mt-2"
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
                 >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2"
-                  >
-                Ver Proyecto
-                  </a>
-                </Button>
-                        </div>
-                </div>
-              </Card>
-            ))}
+                  {currentContent.project.button}
+                </a>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* About Section */}
       <section id="about" className="relative z-10 py-20 px-6">
@@ -490,57 +541,88 @@ export default function OmegonLanding() {
         </div>
       </section>
 
+
       {/* Contact Section */}
-      <section id="contact" className="relative z-10 py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.contact.title}</h2>
-            <p className="text-gray-400 text-lg">{currentContent.contact.subtitle}</p>
+<section id="contact" className="relative z-10 py-20 px-6">
+  <div className="container mx-auto">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.contact.title}</h2>
+      <p className="text-gray-400 text-lg">{currentContent.contact.subtitle}</p>
+
+      {/* BOTÓN DE CALENDLY */}
+      <div className="mt-6">
+        <button
+          onClick={() => setOpenCalendly(true)}
+          className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition"
+        >
+          Agendá tu cita
+        </button>
+      </div>
+    </div>
+
+    <div className="max-w-2xl mx-auto">
+      <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+        <form
+          ref={formRef}
+          onSubmit={formik.handleSubmit}
+          className="space-y-6"
+        >
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.name}</label>
+            <Input
+              placeholder={currentContent.contact.form.name}
+              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500"
+              {...formik.getFieldProps("name")}
+            />
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
-              <form className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.name}</label>
-                  <Input
-                    className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500"
-                    placeholder={currentContent.contact.form.name}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.email}</label>
-                  <Input
-                    type="email"
-                    className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500"
-                    placeholder={currentContent.contact.form.email}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.message}</label>
-                  <Textarea
-                    className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 min-h-[120px]"
-                    placeholder={currentContent.contact.form.message}
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
-                >
-                  <Mail className="w-4 w-4 mr-2" />
-                  {currentContent.contact.form.submit}
-                </Button>
-              </form>
-            </Card>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.email}</label>
+            <Input
+              id="email"
+              type="email"
+              placeholder={currentContent.contact.form.email}
+              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500"
+              {...formik.getFieldProps("email")}
+            />
           </div>
-        </div>
-      </section>
 
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.message}</label>
+            <Textarea
+              id="message"
+              placeholder={currentContent.contact.form.message}
+              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 min-h-[120px]"
+              {...formik.getFieldProps("message")}
+            />
+          </div>
+
+          <Button
+            type="submit"
+            disabled={formik.isSubmitting}
+            className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
+          >
+            <Mail className="w-4 w-4 mr-2" />
+            {currentContent.contact.form.submit}
+          </Button>
+        </form>
+      </Card>
+    </div>
+  </div>
+
+  {/* MODAL Calendly */}
+  <CalendlyModal
+    open={openCalendly}
+    onClose={() => setOpenCalendly(false)}
+    calendlyUrl={calendlyUrl}
+  />
+
+  <ToastContainer position="bottom-right" autoClose={3000} hideProgressBar />
+</section>
+
+ 
       {/* Footer */}
-      <footer className="relative z-10 py-12 px-6 border-t border-white/10">
+      <footer className="relative z-1 py-12 px-6 border-t border-white/10">
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <Image src="/logo.svg" alt="Omegon" width={32} height={32} className="w-8 h-8" />
