@@ -40,6 +40,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import Link from "next/link"
 
 
 
@@ -741,17 +742,65 @@ const formik = useFormik({
 
  
       {/* Footer */}
-      <footer className="relative z-1 py-12 px-6 border-t border-white/10">
-        <div className="container mx-auto text-center">
-          <div className="flex items-center justify-center space-x-4 mb-6">
-            <Image src="/logo.svg" alt="Omegon" width={32} height={32} className="w-8 h-8" />
-            <span className="text-xl font-bold">Omegon</span>
-          </div>
-          <p className="text-gray-400 text-sm">
-            © 2025 Omegon. {language === "es" ? "Todos los derechos reservados." : "All rights reserved."}
-          </p>
-        </div>
-      </footer>
+<footer className="relative z-1 py-12 px-6 border-t border-white/10">
+  <div className="container mx-auto text-center">
+    {/* Logo y nombre */}
+    <div className="flex items-center justify-center space-x-4 mb-6">
+    <Image src="/logo.svg" alt="Omegon" width={56} height={56} className="w-12 h-12" />
+    </div>
+
+    {/* Redes sociales */}
+    <div className="flex justify-center space-x-6 mb-6 text-gray-100">
+      <Link
+        href="https://www.linkedin.com/company/omegon-studio"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-[#EDF252] transition-colors flex items-center space-x-2"
+      >
+        {/* LinkedIn Icon */}
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.13 8.14h4.73v13.72H.13V8.14zm7.69 0h4.53v1.88h.06c.63-1.2 2.18-2.45 4.49-2.45 4.8 0 5.69 3.16 5.69 7.26v8.02h-4.74v-7.11c0-1.7-.03-3.89-2.37-3.89-2.38 0-2.75 1.85-2.75 3.76v7.24h-4.74V8.14z" />
+        </svg>
+        <span className="text-sm">LinkedIn</span>
+      </Link>
+
+      <Link
+        href="https://www.instagram.com/omegon.studio"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-[#EDF252] transition-colors flex items-center space-x-2"
+      >
+        {/* Instagram Icon */}
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.75 2h8.5A5.76 5.76 0 0122 7.75v8.5A5.76 5.76 0 0116.25 22h-8.5A5.76 5.76 0 012 16.25v-8.5A5.76 5.76 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5A3.75 3.75 0 0020 16.25v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.75-2.5a1.25 1.25 0 112.5 0 1.25 1.25 0 01-2.5 0z" />
+        </svg>
+        <span className="text-sm">Instagram</span>
+      </Link>
+    </div>
+
+    {/* Ubicaciones */}
+    <div className="mb-6">
+      <p className="text-gray-200 text-sm mb-4 font-semibold">
+        {language === "es" ? "Ubicaciones:" : "Locations:"}
+      </p>
+      <div className="flex flex-wrap justify-center gap-3 text-gray-200 text-sm">
+        <span>CABA</span>
+        •<span> Córdoba</span>
+        •<span>Comodoro Rivadavia</span>
+        •<span> Mar del Plata</span>
+      </div>
+    </div>
+
+    {/* Derechos reservados */}
+    <p className="text-gray-400 text-sm">
+      © 2025 Omegon.{" "}
+      {language === "es"
+        ? "Todos los derechos reservados."
+        : "All rights reserved."}
+    </p>
+  </div>
+</footer>
+
     </div>
   )
 }
