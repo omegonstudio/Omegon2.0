@@ -161,7 +161,7 @@ const formik = useFormik({
         bookCall: "Agendar cita", 
       },
       hero: {
-        title: <> Diseñamos con <strong>propósito</strong>, desarrollamos con <strong>precisión</strong> .</>,
+        title: <> Diseñamos con <strong>propósito</strong>, desarrollamos con <strong>precisión</strong></>,
         description: (
           <>
             En Omegon, combinamos diseño con <strong>propósito</strong> y desarrollo con <strong>precisión</strong> para crear aplicaciones y sitios web que marcan la diferencia. Desde la conceptualización hasta el lanzamiento, nos enfocamos en la calidad, la innovación y la excelencia técnica. Sumate a la evolución digital con soluciones a medida que potencian tu negocio.
@@ -261,10 +261,10 @@ const formik = useFormik({
         bookCall: "Book a call", // <-- Agregado
       },
       hero: {
-        title: "We design with purpose, develop with precision.",
+        title: <> We design with <strong>purpose</strong>, develop with <strong>precision</strong></>,
         description: (
           <>
-            At Omegon, we combine purposeful design and precise development to create applications and websites that make a difference. From conceptualization to launch, we focus on quality, innovation, and technical excellence. Join the digital evolution with custom solutions that empower your business.
+            At Omegon, we combine purposeful design and precise development to create applications and websites that make a difference. From conceptualization to launch, we focus on quality, innovation, and technical excellence. Join the digital evolution with custom solutions that empower your business
             <br />
             <span>
               We design with <strong>purpose</strong>, develop with <strong>precision</strong>.
@@ -399,7 +399,7 @@ const formik = useFormik({
    <div className="relative w-full">
       <Navbar className="fixed top-0 left-0 right-0 z-40">
         <NavBody className="backdrop-blur-md border-b border-white/10 bg-black/30 dark:bg-black/30 px-6 py-4">
-          <NavbarLogo src="/logo.svg" alt="Omegon" name="Omegon" />
+          <NavbarLogo src="/blanco.svg" alt="Omegon" name="Omegon" />
           <NavItems
             items={navItems}
             className="text-white hover:text-[#EDF252]"
@@ -485,7 +485,7 @@ const formik = useFormik({
   <div className="w-full max-w-6xl space-y-12 relative z-10">
     <div className="flex flex-col items-center text-center space-y-8">
       <div className="space-y-6 flex items-center justify-center flex-col">
-        <h1 className="text-3xl md:text-6xl font-bold tracking-tight max-w-3xl">
+        <h1 className="text-3xl md:text-6xl tracking-tight max-w-3xl">
           {currentContent.hero.title}
         </h1>
         <p className="text-lg text-neutral-300 max-w-2xl">
