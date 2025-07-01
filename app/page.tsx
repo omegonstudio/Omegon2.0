@@ -18,6 +18,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Beams from "@/components/beams"
 
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/ui/resizable-navbar";
+
+import { useTranslations } from "next-intl";
+
+interface OmegonNavbarProps {
+  language: string;
+  setLanguage: (lang: string) => void;
+}
+
+
 
 const projects = [
   {
@@ -85,6 +105,8 @@ const formik = useFormik({
   },
 });
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
   // Custom cursor tracking
   useEffect(() => {
@@ -124,6 +146,7 @@ const formik = useFormik({
         projects: "Proyectos",
         about: "Nosotros",
         contact: "Contacto",
+        bookCall: "Agendar cita", // <-- Agregado
       },
       hero: {
         title: "Diseñamos con propósito, desarrollamos con precisión.",
@@ -196,6 +219,7 @@ const formik = useFormik({
         projects: "Projects",
         about: "About",
         contact: "Contact",
+        bookCall: "Book a call", // <-- Agregado
       },
       hero: {
         title: "We design with purpose, develop with precision.",
@@ -263,7 +287,14 @@ const formik = useFormik({
     },
   }
 
-  const currentContent = content[language]
+  const currentContent = content[language];
+
+  const navItems = [
+    { name: currentContent.nav.services, link: "#services" },
+    { name: currentContent.nav.projects, link: "#projects" },
+    { name: currentContent.nav.about, link: "#about" },
+    { name: currentContent.nav.contact, link: "#contact" },
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -295,72 +326,74 @@ const formik = useFormik({
         />
       ))}
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-black/20 border-b border-white/10">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Image src="/logo.svg" alt="Omegon" width={40} height={40} className="w-10 h-10" />
-              <span className="text-xl font-bold">Omegon</span>
-            </div>
+   <div className="relative w-full">
+      <Navbar className="fixed top-0 left-0 right-0 z-40">
+        <NavBody className="backdrop-blur-md border-b border-white/10 bg-black/30 dark:bg-black/30 px-6 py-4">
+          <NavbarLogo src="/logo.svg" alt="Omegon" name="Omegon" />
+          <NavItems
+            items={navItems}
+            className="text-white hover:text-[#EDF252]"
+          />
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setLanguage(language === "es" ? "en" : "es")}
+              className="flex items-center space-x-2 px-3 py-1 rounded-full backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 text-white"
+            >
+              <Globe className="w-4 h-4" />
+              <span className="text-sm font-medium">{language.toUpperCase()}</span>
+            </button>
+          </div>
+        </NavBody>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="hover:text-[#EDF252] transition-colors duration-300">
-                {currentContent.nav.services}
-              </a>
-              <a href="#projects" className="hover:text-[#EDF252] transition-colors duration-300">
-                {currentContent.nav.projects}
-              </a>
-              <a href="#about" className="hover:text-[#EDF252] transition-colors duration-300">
-                {currentContent.nav.about}
-              </a>
-              <a href="#contact" className="hover:text-[#EDF252] transition-colors duration-300">
-                {currentContent.nav.contact}
-              </a>
-            </div>
+        <MobileNav className="backdrop-blur-md border-b border-white/10 bg-black/30 dark:bg-black/30 px-4 py-3">
+          <MobileNavHeader>
+            <NavbarLogo src="/logo.svg" alt="Omegon" name="Omegon" />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
 
-            <div className="flex items-center space-x-4">
-              {/* Language Toggle */}
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+            className="bg-black/80 text-white"
+          >
+            {navItems.map((item, idx) => (
+              <a
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-white hover:text-[#EDF252] transition-colors duration-300"
+              >
+                <span className="block">{item.name}</span>
+              </a>
+            ))}
+
+            <div className="flex w-full flex-col gap-4 pt-4">
+            
+              <NavbarButton
+                as="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setOpenCalendly(true);
+                }}
+                variant="primary"
+                className="w-full"
+              >
+                {currentContent.nav.bookCall}
+              </NavbarButton>
               <button
                 onClick={() => setLanguage(language === "es" ? "en" : "es")}
-                className="flex items-center space-x-2 px-3 py-1 rounded-full backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300"
+                className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white"
               >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{language.toUpperCase()}</span>
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-lg backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300"
-              >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                <Globe className="w-4 h-4" /> {language.toUpperCase()}
               </button>
             </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 p-4 rounded-lg backdrop-blur-md bg-black/40 border border-white/10">
-              <div className="flex flex-col space-y-4">
-                <a href="#services" className="hover:text-[#EDF252] transition-colors duration-300">
-                  {currentContent.nav.services}
-                </a>
-                <a href="#projects" className="hover:text-[#EDF252] transition-colors duration-300">
-                  {currentContent.nav.projects}
-                </a>
-                <a href="#about" className="hover:text-[#EDF252] transition-colors duration-300">
-                  {currentContent.nav.about}
-                </a>
-                <a href="#contact" className="hover:text-[#EDF252] transition-colors duration-300">
-                  {currentContent.nav.contact}
-                </a>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
+    </div>
 
       {/* Hero Section */}
  <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-20">

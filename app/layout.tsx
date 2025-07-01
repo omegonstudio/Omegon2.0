@@ -14,7 +14,6 @@ const exo = Exo({
 export const metadata: Metadata = {
   title: 'OMEGON',
   description: 'Diseñamos con propósito, desarrollamos con precisión.',
-  viewport: 'width=device-width, initial-scale=1.0',
   keywords: [
     'Tecnología', 'UX/UI', 'Desarrollo Web', 'Software', 'IA', 'Transformación Digital'
   ],
@@ -36,6 +35,10 @@ export const metadata: Metadata = {
     description: 'Diseñamos con propósito, desarrollamos con precisión.',
     images: ['https://omegon.com.ar/assets/logos/logo_omegon.jpg'],
   },
+};
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
