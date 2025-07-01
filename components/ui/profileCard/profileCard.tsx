@@ -20,11 +20,18 @@ interface ProfileCardProps {
 }
 
 
-const DEFAULT_BEHIND_GRADIENT =
-  "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y),hsla(266,100%,90%,var(--card-opacity)) 4%,hsla(266,50%,80%,calc(var(--card-opacity)*0.75)) 10%,hsla(266,25%,70%,calc(var(--card-opacity)*0.5)) 50%,hsla(266,0%,60%,0) 100%),radial-gradient(35% 52% at 55% 20%,#00ffaac4 0%,#073aff00 100%),radial-gradient(100% 100% at 50% 50%,#00c1ffff 1%,#073aff00 76%),conic-gradient(from 124deg at 50% 50%,#c137ffff 0%,#07c6ffff 40%,#07c6ffff 60%,#c137ffff 100%)";
+const CUSTOM_BEHIND_GRADIENT ="radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y), hsla(72, 90%, 70%, var(--card-opacity)) 5%, hsla(100, 35%, 50%, calc(var(--card-opacity)*0.6)) 25%, hsla(110, 25%, 30%, calc(var(--card-opacity)*0.3)) 60%, hsla(120, 10%, 20%, 0) 100%), radial-gradient(35% 52% at 60% 30%, #EDF25233 0%, #17261E00 100%), radial-gradient(100% 100% at 50% 50%, #7ABF5A22 0%, #17261E00 80%), conic-gradient(from 124deg at 50% 50%, #EDF25222 0%, #548C4533 50%, #48733C22 100%)";
+  "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y),\
+  rgba(237,242,82,var(--card-opacity)) 5%,\
+  rgba(255,255,255,calc(var(--card-opacity)*0.5)) 15%,\
+  rgba(23,38,30,calc(var(--card-opacity)*0.6)) 60%,\
+  rgba(23,38,30,0) 100%),\
+  radial-gradient(40% 50% at 55% 25%, #EDF252cc 0%, #17261E00 100%),\
+  radial-gradient(100% 100% at 50% 50%, #FFFFFF22 1%, #17261E00 70%),\
+  conic-gradient(from 124deg at 50% 50%, #EDF252 0%, #FFFFFF 20%, #EDF252 60%, #17261E 100%)";
 
-const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
+const DEFAULT_INNER_GRADIENT = "linear-gradient(145deg, #17261E 0%, #EDF25233 100%)";
+
 
 const ANIMATION_CONFIG = {
   SMOOTH_DURATION: 600,
@@ -52,20 +59,19 @@ const easeInOutCubic = (x: number): number =>
   x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
-  avatarUrl = "<Placeholder for avatar URL>",
-  iconUrl = "/logo.svg",
-  grainUrl = "<Placeholder for grain URL>",
+  avatarUrl,
+  iconUrl = "/pattern.svg",
+  grainUrl,
   behindGradient,
   innerGradient,
   showBehindGradient = true,
   className = "",
   enableTilt = true,
-  miniAvatarUrl,
-  name = "Javi A. Torres",
-  title = "Software Engineer",
-  handle = "javicodes",
+  name,
+  title ,
+  handle,
   status = "Online",
-  contactText = "Contact",
+  contactText,
   showUserInfo = true,
   onContactClick,
 }) => {
@@ -247,7 +253,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         "--icon": iconUrl ? `url(${iconUrl})` : "none",
         "--grain": grainUrl ? `url(${grainUrl})` : "none",
         "--behind-gradient": showBehindGradient
-          ? (behindGradient ?? DEFAULT_BEHIND_GRADIENT)
+          ? (behindGradient ?? CUSTOM_BEHIND_GRADIENT)
           : "none",
         "--inner-gradient": innerGradient ?? DEFAULT_INNER_GRADIENT,
       }) as React.CSSProperties,
@@ -259,6 +265,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   }, [onContactClick]);
 
   return (
+    <div className="max-w-sm w-full mx-auto">
+
     <div
       ref={wrapRef}
       className={`pc-card-wrapper ${className}`.trim()}
@@ -282,18 +290,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             {showUserInfo && (
               <div className="pc-user-info">
                 <div className="pc-user-details">
-                  <div className="pc-mini-avatar">
-                    <img
-                      src={miniAvatarUrl || avatarUrl}
-                      alt={`${name || "User"} mini avatar`}
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.opacity = "0.5";
-                        target.src = avatarUrl;
-                      }}
-                    />
-                  </div>
                   <div className="pc-user-text">
                     <div className="pc-handle">@{handle}</div>
                     <div className="pc-status">{status}</div>
@@ -320,6 +316,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         </div>
       </section>
     </div>
+   </div>
+
   );
 };
 

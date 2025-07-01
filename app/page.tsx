@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
 import { Globe, Code, Smartphone, Palette, Zap, Mail, Menu, X } from "lucide-react"
-import Image from "next/image"
 import  StarBorder  from "@/components/ui/StarBorder"
+import Image from "next/image"
 import { ThreeDLogoCarousel} from "@/components/ui/3d-carousel"
 import CalendlyModal from "@/components/Calendly/CalendyModal"
 
@@ -32,6 +32,16 @@ import {
 
 import { useTranslations } from "next-intl";
 import ProfileCard from "@/components/ui/profileCard/profileCard"
+
+
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+
 
 interface OmegonNavbarProps {
   language: string;
@@ -222,7 +232,7 @@ const formik = useFormik({
               {
             name: "Martina Marquez",
             image: "/MAR.png",
-            title:"Comunity Manager",
+            title:"Community Manager",
             handle:"MarMarquez",
             status:"Online",
             contactTex:"Contactame",
@@ -325,7 +335,7 @@ const formik = useFormik({
               {
             name: "Martina Marquez",
             image: "/MAR.png",
-            title:"Comunity Manager",
+            title:"Community Manager",
             handle:"MarMarquezz",
             status:"Online",
             contactTex:"Contactame",
@@ -595,41 +605,64 @@ const formik = useFormik({
 </section>
 
 
-      {/* About Section */}
-      <section id="about" className="relative z-10 py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.about.title}</h2>
-            <h3 className="text-xl md:text-2xl text-[#EDF252] mb-6">{currentContent.about.subtitle}</h3>
-            <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
-              {currentContent.about.description}
-            </p>
-          </div>
+ {/* About Section */}
+<section id="about" className="relative z-10 pt-5 px-6">
+  <div className="container mx-auto">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.about.title}</h2>
+      <h3 className="text-xl md:text-2xl text-[#EDF252] mb-6">{currentContent.about.subtitle}</h3>
+      <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
+        {currentContent.about.description}
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-           
-
+    <div className="w-full flex justify-center relative">
+      <div className="w-[90%] md:w-[70%]">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={10}
+          slidesPerView={2}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          loop={true}
+          autoplay={{ delay:2500 }}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 2 },
+          }}
+          className="relative"
+        >
           {currentContent.about.team.map((member, index) => (
-          <ProfileCard
-            key={index}
-            name={member.name}
-            title={member.title}
-            handle={member.handle}
-            status={member.status}
-            contactText="Contact Me"
-            avatarUrl={member.image || "/placeholder.svg"}
-            showUserInfo={true}
-            enableTilt={true}
-            onContactClick={() => member.link && window.open(member.link, "_blank")}
-          />
+            <SwiperSlide key={index} className="flex justify-center py-10 min-h-[560px] md:min-h-[620px]">
+              <ProfileCard
+                name={member.name}
+                title={member.title}
+                handle={member.handle}
+                status={member.status}
+                contactText="Contact Me"
+                avatarUrl={member.image || "/placeholder.svg"}
+                showUserInfo={true}
+                enableTilt={true}
+                onContactClick={() =>
+                  member.link && window.open(member.link, "_blank")
+                }
+              />
+            </SwiperSlide>
           ))}
-          </div>
-        </div>
-      </section>
+        </Swiper>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 
       {/* Contact Section */}
-<section id="contact" className="relative z-10 py-20 px-6">
+<section id="contact" className="relative z-10 pt-5 pb-20 px-6">
   <div className="container mx-auto">
     <div className="text-center mb-16">
       <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.contact.title}</h2>
