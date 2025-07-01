@@ -31,7 +31,7 @@ import {
 
 import { useTranslations } from "next-intl";
 import ProfileCard from "@/components/ui/profileCard/profileCard"
-
+import BlurText from "@/components/ui/blurText"
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -40,6 +40,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Link from "next/link"
 import HeroSplineBackground from "@/components/blocks/galaxy-interactive-hero-section"
+import Beams from "@/components/beams"
 
 
 
@@ -465,23 +466,29 @@ const formik = useFormik({
     </div>
 
       {/* Hero Section */}
- <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-20">
+ <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-12">
   <div className="absolute inset-0 z-0">
-
-{/* <Scene /> */}
-<HeroSplineBackground/>
-
-
+{/* <HeroSplineBackground/> */}
+  <Beams
+    beamWidth={3}
+    beamHeight={30}
+    beamNumber={20}
+    lightColor="#ffffff"
+    speed={2}
+    noiseIntensity={1.75}
+    scale={0.2}
+    rotation={30}
+  />
    </div>
 
   {/* Contenido central */}
   <div className="w-full max-w-6xl space-y-12 relative z-10">
-    <div className="flex flex-col items-center text-center space-y-8">
-      <div className="space-y-6 flex items-center justify-center flex-col">
+    <div className="flex flex-col items-center text-center space-y-10">
+      <div className="space-y-12 flex items-center justify-center flex-col">
         <h1 className="text-3xl md:text-6xl tracking-tight max-w-3xl">
           {currentContent.hero.title}
         </h1>
-        <p className="text-lg text-neutral-300 max-w-2xl">
+        <p className="text-lg text-neutral-100 max-w-4xl">
           {currentContent.hero.description}
         </p>
 
@@ -517,12 +524,21 @@ const formik = useFormik({
 
 
 {/* Service Section */}
-<section id="services" className="relative z-10 pt-20 px-4 sm:px-6">
+<section id="services" className="relative z-10 pt-6 px-4 sm:px-6">
   <div className="container mx-auto">
     <div className="text-center mb-12 sm:mb-16">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-        {currentContent.services.title}
+      <h2>
+        <div className="flex justify-center">
+        <BlurText
+          text={currentContent.services.title}
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            />
+       </div>
       </h2>
+
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-6xl mx-auto">
@@ -555,9 +571,18 @@ const formik = useFormik({
 <section id="projects" className="relative z-10 pt-8 pb-20 px-4 sm:px-6">
   <div className="container mx-auto">
     <div className="text-center mb-12 sm:mb-16">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-        {currentContent.project.title}
+      <h2>
+         <div className="flex justify-center">
+        <BlurText
+          text={currentContent.project.title}
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            />
+      </div>
       </h2>
+
       <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
         {currentContent.project.subtitle}
       </p>
@@ -603,7 +628,20 @@ const formik = useFormik({
 <section id="about" className="relative z-10 pt-5 px-6">
   <div className="container mx-auto">
     <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.about.title}</h2>
+ <h2>
+        <div className="flex justify-center">
+        <BlurText
+          text= {currentContent.about.title}
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            />
+      </div>
+
+
+ </h2>
+      
       <h3 className="text-xl md:text-2xl text-[#EDF252] mb-6">{currentContent.about.subtitle}</h3>
       <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
         {currentContent.about.description}
@@ -659,7 +697,17 @@ const formik = useFormik({
 <section id="contact" className="relative z-10 pt-5 pb-20 px-6">
   <div className="container mx-auto">
     <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-5xl font-bold mb-4">{currentContent.contact.title}</h2>
+    <h2>
+        <div className="flex justify-center">
+        <BlurText
+          text= {currentContent.contact.title}
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            />
+      </div>
+    </h2>
       <p className="text-gray-400 text-lg">{currentContent.contact.subtitle}</p>
 
       {/* BOTÓN DE CALENDLY */}
