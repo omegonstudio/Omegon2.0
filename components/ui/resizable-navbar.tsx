@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
@@ -9,7 +8,7 @@ import {
   useMotionValueEvent,
   useMotionValue,
 } from "framer-motion";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -58,10 +57,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = lastY.get();
     lastY.set(latest);
-
     const direction = latest > prev ? "down" : "up";
     setScrollDirection(direction);
-
     setScrolledEnough(latest > 100);
   });
 
@@ -73,7 +70,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       style={{ scaleX, y: translateY }}
       transition={{ type: "spring", stiffness: 200, damping: 30 }}
       className={cn(
-        "sticky top-0 inset-x-0 z-50 origin-center transition-all duration-300 ease-in-out",
+        // Cambia a fixed y agrega glassmorphism
+        "fixed top-0 left-0 right-0 z-50 origin-center transition-all duration-300 ease-in-out",
+        "backdrop-blur-md bg-black/20 border-b border-white/10",
         className
       )}
     >
@@ -92,13 +91,15 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-  padding: visible ? "0.5rem 1rem" : "1.5rem 2rem",
-  backdropFilter: visible ? "blur(10px)" : "none",
-  y: visible ? 0 : 0,
-}}
+        padding: visible ? "0.5rem 1rem" : "1.5rem 2rem",
+        backdropFilter: visible ? "blur(20px)" : "none",
+        y: visible ? 0 : 0,
+      }}
       transition={{ type: "spring", stiffness: 200, damping: 50 }}
       className={cn(
         "relative z-50 mx-auto hidden w-full max-w-7xl items-center justify-between lg:flex",
+        // Glassmorphism aquí también
+        "backdrop-blur-md bg-black/20 border-b border-white/10 shadow-lg",
         className
       )}
     >
@@ -137,12 +138,14 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
+        backdropFilter: visible ? "blur(20px)" : "none",
         y: visible ? 0 : 0,
       }}
       transition={{ type: "spring", stiffness: 200, damping: 50 }}
       className={cn(
         "relative z-50 mx-auto flex w-full flex-col items-center justify-between lg:hidden",
+        // Glassmorphism aquí también
+        "backdrop-blur-md bg-black/20 border-b border-white/10 shadow-lg",
         className
       )}
     >
@@ -155,12 +158,7 @@ export const MobileNavHeader = ({ children, className }: MobileNavHeaderProps) =
   <div className={cn("flex w-full items-center justify-between", className)}>{children}</div>
 );
 
-export const MobileNavMenu = ({
-  children,
-  className,
-  isOpen,
-  onClose,
-}: MobileNavMenuProps) => {
+export const MobileNavMenu = ({ children, className, isOpen }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -169,7 +167,9 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col gap-4 px-4 py-6 shadow-md dark:bg-neutral-950",
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col gap-4 px-4 py-6",
+
+            "backdrop-blur-md bg-black/40 border border-white/10 shadow-lg",
             className
           )}
         >
@@ -209,24 +209,6 @@ export const NavbarLogo = ({
   </a>
 );
 
-type NavbarButtonAnchorProps = {
-  as?: "a";
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
-
-type NavbarButtonButtonProps = {
-    href?: any;
-  as: "button";
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-type NavbarButtonProps = NavbarButtonAnchorProps | NavbarButtonButtonProps;
-
 export const NavbarButton = ({
   as = "a",
   href,
@@ -234,7 +216,14 @@ export const NavbarButton = ({
   className,
   variant = "primary",
   ...props
-}: NavbarButtonProps) => {
+}: {
+  as?: "a" | "button";
+  href?: string;
+  children: React.ReactNode;
+  className?: string;
+  variant?: "primary" | "secondary" | "dark" | "gradient";
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const baseStyles =
     "px-4 py-2 rounded-md text-sm font-bold inline-block text-center transition";
   const variantStyles = {
@@ -245,26 +234,23 @@ export const NavbarButton = ({
   };
 
   if (as === "button") {
-    const buttonProps = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
     return (
       <button
         className={cn(baseStyles, variantStyles[variant], className)}
-        {...buttonProps}
+        {...props}
       >
         {children}
       </button>
     );
   }
 
-  const anchorProps = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
   return (
     <a
       href={href}
       className={cn(baseStyles, variantStyles[variant], className)}
-      {...anchorProps}
+      {...props}
     >
       {children}
     </a>
   );
 };
-
