@@ -64,15 +64,16 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 
   const scaleX = scrolledEnough && scrollDirection === "down" ? 0.75 : 1;
   const translateY = scrolledEnough && scrollDirection === "down" ? "5vh" : "0vh";
+  const roundedClass = scrolledEnough && scrollDirection === "down" ? "rounded-2xl" : "";
 
   return (
     <motion.div
       style={{ scaleX, y: translateY }}
       transition={{ type: "spring", stiffness: 200, damping: 30 }}
       className={cn(
-        // Cambia a fixed y agrega glassmorphism
         "fixed top-0 left-0 right-0 z-50 origin-center transition-all duration-300 ease-in-out",
         "backdrop-blur-md bg-black/20 border-b border-white/10",
+        roundedClass, // <-- aquí se agrega el borde redondeado
         className
       )}
     >

@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 
 import { useTranslations } from "next-intl";
+import ProfileCard from "@/components/ui/profileCard/profileCard"
 
 interface OmegonNavbarProps {
   language: string;
@@ -146,12 +147,15 @@ const formik = useFormik({
         projects: "Proyectos",
         about: "Nosotros",
         contact: "Contacto",
-        bookCall: "Agendar cita", // <-- Agregado
+        bookCall: "Agendar cita", 
       },
       hero: {
-        title: "Diseñamos con propósito, desarrollamos con precisión.",
-        description:
-          "En Omegon, combinamos diseño con propósito y desarrollo con precisión para crear aplicaciones y sitios web que marcan la diferencia. Desde la conceptualización hasta el lanzamiento, nos enfocamos en la calidad, la innovación y la excelencia técnica. Sumate a la evolución digital con soluciones a medida que potencian tu negocio.",
+        title: <> Diseñamos con <strong>propósito</strong>, desarrollamos con <strong>precisión</strong> .</>,
+        description: (
+          <>
+            En Omegon, combinamos diseño con <strong>propósito</strong> y desarrollo con <strong>precisión</strong> para crear aplicaciones y sitios web que marcan la diferencia. Desde la conceptualización hasta el lanzamiento, nos enfocamos en la calidad, la innovación y la excelencia técnica. Sumate a la evolución digital con soluciones a medida que potencian tu negocio.
+          </>
+        ),
         tags: ["Desarrollo web", "Desarrollo de apps", "Diseño UX/UI", "Automatizaciones"],
         cta: "Comenzar proyecto",
       },
@@ -190,15 +194,39 @@ const formik = useFormik({
         team: [
           {
             name: "Agustín Rodríguez",
-            description:
-              "Profesional con más de 10 años de experiencia en el manejo de proyectos, especializado en desarrollo de software y tecnología.",
-            image: "/agus.jpg",
+            image: "/TITO.png",
+            title:"Software Developer",
+            handle:"AgusRodriguez",
+            status:"Online",
+            contactTex:"Contactame",
+            link:"https://www.linkedin.com/in/agustin-devfs",
           },
           {
             name: "Eugenia Galleguillo",
-            description:
-              "Licenciada en Comunicación y apasionada por el diseño gráfico, encuentro en la creatividad una forma de dar vida a ideas y conectar con las personas a través de lo visual.",
-            image: "/euge.jpg",
+            image: "/EUGE.png",
+            title:"Graphic Designer",
+            handle:"EugeGalleguillo",
+            status:"Online",
+            contactTex:"Contactame",
+            link:"hhttps://www.linkedin.com/in/eugenia-galleguillo-8282a71a4/",
+          },
+              {
+            name: "Martina Fraga",
+            image: "/FRAGA.png",
+            title:"Marketing Specialist",
+            handle:"MartiFraga",
+            status:"Online",
+            contactTex:"Contactame",
+            link:"https://www.linkedin.com/in/martinafraga/",
+          },
+              {
+            name: "Martina Marquez",
+            image: "/MAR.png",
+            title:"Comunity Manager",
+            handle:"MarMarquez",
+            status:"Online",
+            contactTex:"Contactame",
+            link:"https://www.linkedin.com/in/martimarquez/",
           },
         ],
       },
@@ -223,8 +251,15 @@ const formik = useFormik({
       },
       hero: {
         title: "We design with purpose, develop with precision.",
-        description:
-          "At Omegon, we combine purposeful design and precise development to create applications and websites that make a difference. From conceptualization to launch, we focus on quality, innovation, and technical excellence. Join the digital evolution with custom solutions that empower your business.",
+        description: (
+          <>
+            At Omegon, we combine purposeful design and precise development to create applications and websites that make a difference. From conceptualization to launch, we focus on quality, innovation, and technical excellence. Join the digital evolution with custom solutions that empower your business.
+            <br />
+            <span>
+              We design with <strong>purpose</strong>, develop with <strong>precision</strong>.
+            </span>
+          </>
+        ),
         tags: ["Web Development", "App Development", "UX/UI Design", "Automations"],
         cta: "Start project",
       },
@@ -261,16 +296,40 @@ const formik = useFormik({
           "Omegon was born with the mission of creating digital solutions that combine design, technology and strategy. We are a team committed to developing applications and websites that not only meet high quality standards, but also respond to the real needs of each project.",
         team: [
           {
-            name: "Agustín Rodríguez",
-            description:
-              "Professional with more than 10 years of experience in project management, specialized in software development and technology.",
-            image: "/agus.jpg",
+            name: "Agus Rodríguez",
+            image: "/TITO.png",
+            title: "Software Developer",
+            handle: "AgustinRodriguez",
+            status: "Online",
+            contactTex: "Contact Me",
+            link:"https://www.linkedin.com/in/agustin-devfs",
           },
           {
             name: "Eugenia Galleguillo",
-            description:
-              "Graduate in Communication and passionate about graphic design, I find in creativity a way to bring ideas to life and connect with people through the visual.",
-            image: "/euge.jpg",
+            image: "/EUGE.png",
+            title:"Graphic designer",
+            handle: "EugeniaGalleguillo",
+            status: "Online",
+            contactTex: "Contact Me",
+           link:"hhttps://www.linkedin.com/in/eugenia-galleguillo-8282a71a4/",
+          },
+        {
+            name: "Martina Fraga",
+            image: "/FRAGA.png",
+            title:"Marketing Specialist",
+            handle:"MartiFraga",
+            status:"Online",
+            contactTex:"Contactame",
+            link:"https://www.linkedin.com/in/martinafraga/",
+          },
+              {
+            name: "Martina Marquez",
+            image: "/MAR.png",
+            title:"Comunity Manager",
+            handle:"MarMarquezz",
+            status:"Online",
+            contactTex:"Contactame",
+            link:"https://www.linkedin.com/in/martimarquez/",
           },
         ],
       },
@@ -301,7 +360,7 @@ const formik = useFormik({
       {/* Custom Cursor */}
       <div
         ref={cursorRef}
-        className="fixed w-4 h-4 bg-[#EDF252] rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-75 ease-out"
+        className="fixed w-4 h-4 bg-[#EDF252] rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-75 ease-out"
         style={{
           left: mousePosition.x - 8,
           top: mousePosition.y - 8,
@@ -504,7 +563,7 @@ const formik = useFormik({
       {projects.map((project) => (
         <Card
           key={project.id}
-          className="aspect-[4/3] sm:aspect-video backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#548C45]/20 group overflow-hidden"
+          className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
         >
           <div className="w-full h-full flex items-center justify-center p-4 sm:p-6">
             <div className="text-center space-y-3">
@@ -516,7 +575,7 @@ const formik = useFormik({
               <Button
                 asChild
                 variant="outline"
-                className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] transition mt-2"
+                className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] transition mt-2 rounded-xl"
               >
                 <a
                   href={project.link}
@@ -548,28 +607,22 @@ const formik = useFormik({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {currentContent.about.team.map((member, index) => (
-              <Card
-                key={index}
-                className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#548C45]/20 group"
-              >
-                <div className="text-center space-y-6">
-                  <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#548C45]/30 group-hover:border-[#EDF252]/50 transition-all duration-300">
-                    <Image
-                      src={member.image || "/placeholder.svg"}
-                      alt={member.name}
-                      width={128}
-                      height={128}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2 text-[#EDF252]">{member.name}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{member.description}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+           
+
+          {currentContent.about.team.map((member, index) => (
+          <ProfileCard
+            key={index}
+            name={member.name}
+            title={member.title}
+            handle={member.handle}
+            status={member.status}
+            contactText="Contact Me"
+            avatarUrl={member.image || "/placeholder.svg"}
+            showUserInfo={true}
+            enableTilt={true}
+            onContactClick={() => member.link && window.open(member.link, "_blank")}
+          />
+          ))}
           </div>
         </div>
       </section>
@@ -586,15 +639,15 @@ const formik = useFormik({
       <div className="mt-6">
         <button
           onClick={() => setOpenCalendly(true)}
-          className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition"
+          className="border border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition"
         >
-          Agendá tu cita
+          {currentContent.nav.bookCall}
         </button>
       </div>
     </div>
 
     <div className="max-w-2xl mx-auto">
-      <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+      <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl">
         <form
           ref={formRef}
           onSubmit={formik.handleSubmit}
@@ -604,7 +657,7 @@ const formik = useFormik({
             <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.name}</label>
             <Input
               placeholder={currentContent.contact.form.name}
-              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500"
+              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 rounded-xl"
               {...formik.getFieldProps("name")}
             />
           </div>
@@ -615,7 +668,7 @@ const formik = useFormik({
               id="email"
               type="email"
               placeholder={currentContent.contact.form.email}
-              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500"
+              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 rounded-xl"
               {...formik.getFieldProps("email")}
             />
           </div>
@@ -625,7 +678,7 @@ const formik = useFormik({
             <Textarea
               id="message"
               placeholder={currentContent.contact.form.message}
-              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 min-h-[120px]"
+              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 min-h-[120px] rounded-xl"
               {...formik.getFieldProps("message")}
             />
           </div>
@@ -633,7 +686,7 @@ const formik = useFormik({
           <Button
             type="submit"
             disabled={formik.isSubmitting}
-            className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
+            className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25 rounded-xl"
           >
             <Mail className="w-4 w-4 mr-2" />
             {currentContent.contact.form.submit}
