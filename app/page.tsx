@@ -16,7 +16,6 @@ import * as Yup from "yup";
 import sendEmail from "@/app/services/emailjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Beams from "@/components/beams"
 
 import {
   Navbar,
@@ -34,13 +33,13 @@ import { useTranslations } from "next-intl";
 import ProfileCard from "@/components/ui/profileCard/profileCard"
 
 
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Link from "next/link"
+import HeroSplineBackground from "@/components/blocks/galaxy-interactive-hero-section"
 
 
 
@@ -468,17 +467,11 @@ const formik = useFormik({
       {/* Hero Section */}
  <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-20">
   <div className="absolute inset-0 z-0">
-  <Beams
-      beamWidth={2}
-      beamHeight={15}
-      beamNumber={12}
-      lightColor="#EDF252"
-      speed={2}
-      noiseIntensity={1.75}
-      scale={0.2}
-      rotation={0}
-    /> 
-{/*      <Scene /> */}
+
+{/* <Scene /> */}
+<HeroSplineBackground/>
+
+
    </div>
 
   {/* Contenido central */}

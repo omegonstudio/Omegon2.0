@@ -107,6 +107,9 @@ importers:
       '@react-three/fiber':
         specifier: latest
         version: 9.1.2(@types/react@19.1.8)(expo-asset@11.1.5(expo@53.0.13(@babel/core@7.27.7)(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0))(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0))(expo-file-system@18.1.10(expo@53.0.13(@babel/core@7.27.7)(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0))(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0)))(expo-gl@15.1.6(expo@53.0.13(@babel/core@7.27.7)(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0))(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0))(expo@53.0.13(@babel/core@7.27.7)(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0))(immer@10.1.1)(react-dom@19.0.0(react@19.0.0))(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0)(three@0.177.0)
+      '@splinetool/react-spline':
+        specifier: ^4.0.0
+        version: 4.0.0(@splinetool/runtime@1.10.18)(next@15.2.4(@babel/core@7.27.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tabler/icons-react':
         specifier: ^3.34.0
         version: 3.34.0(react@19.0.0)
@@ -228,6 +231,9 @@ importers:
       '@types/react-toastify':
         specifier: ^4.0.2
         version: 4.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@types/swiper':
+        specifier: ^5.4.3
+        version: 5.4.3
       '@types/three':
         specifier: ^0.169.0
         version: 0.169.0
@@ -1992,6 +1998,20 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
+  '@splinetool/react-spline@4.0.0':
+    resolution: {integrity: sha512-FqrV7/K2q998Y0t83QUauQxsifKWAg9CFZoSb64qRuH7IfHkDs5/OgU1ACkg0aTgsEPtFlH+kATQ+8X6MrizHQ==}
+    peerDependencies:
+      '@splinetool/runtime': '*'
+      next: '>=14.2.0'
+      react: '*'
+      react-dom: '*'
+    peerDependenciesMeta:
+      next:
+        optional: true
+
+  '@splinetool/runtime@1.10.18':
+    resolution: {integrity: sha512-akMEVi/IX0AGc4DTyPgBbC/br+WT/MnkVw6Hd/IMRvUTJJfTOTi2hpwLnObHNyOD1uWXA3P9/DKefCwIQReh6Q==}
+
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
 
@@ -2106,6 +2126,9 @@ packages:
 
   '@types/stats.js@0.17.4':
     resolution: {integrity: sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==}
+
+  '@types/swiper@5.4.3':
+    resolution: {integrity: sha512-hJXpVeANf+XQXgbvmuFZdsnaSOKqOEZcaLDnHhZOJDRow+lfboatwubW+Ay9XiHobMGyEomkgpXSYRlDVn4gMQ==}
 
   '@types/three@0.169.0':
     resolution: {integrity: sha512-oan7qCgJBt03wIaK+4xPWclYRPG9wzcg7Z2f5T8xYTNEF95kh0t0lklxLLYBDo7gQiGLYzE6iF4ta7nXF2bcsw==}
@@ -2310,6 +2333,9 @@ packages:
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
+
+  blurhash@2.0.5:
+    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
 
   bplist-creator@0.1.0:
     resolution: {integrity: sha512-sXaHZicyEEmY86WyueLTQesbeoH/mquvarJaQNbjuOQO+7gbFcDEWqKmcWA4cOTLzFlfgvkiVxolk1k5bBIpmg==}
@@ -3611,6 +3637,10 @@ packages:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
 
+  on-change@4.0.2:
+    resolution: {integrity: sha512-cMtCyuJmTx/bg2HCpHo3ZLeF7FZnBOapLqZHr2AlLeJ5Ul0Zu2mUJJz051Fdwu/Et2YW04ZD+TtU+gVy0ACNCA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
   on-finished@2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
     engines: {node: '>= 0.8'}
@@ -3868,6 +3898,9 @@ packages:
   react-is@19.1.0:
     resolution: {integrity: sha512-Oe56aUPnkHyyDxxkvqtd7KkdQP5uIUfHxd5XTb3wE9d/kRnZLmKbDB0GWk919tdQ+mxxPtG6EAs6RMT6i1qtHg==}
 
+  react-merge-refs@2.1.1:
+    resolution: {integrity: sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag==}
+
   react-native-edge-to-edge@1.6.0:
     resolution: {integrity: sha512-2WCNdE3Qd6Fwg9+4BpbATUxCLcouF6YRY7K+J36KJ4l3y+tWN6XCqAC4DuoGblAAbb2sLkhEDp4FOlbOIot2Og==}
     peerDependencies:
@@ -4077,6 +4110,9 @@ packages:
 
   scheduler@0.26.0:
     resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
+
+  semver-compare@1.0.0:
+    resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -4339,6 +4375,9 @@ packages:
 
   throat@5.0.0:
     resolution: {integrity: sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA==}
+
+  thumbhash@0.1.1:
+    resolution: {integrity: sha512-kH5pKeIIBPQXAOni2AiY/Cu/NKdkFREdpH+TLdM0g6WA7RriCv0kPLgP731ady67MhTAqrVG/4mnEeibVuCJcg==}
 
   tiny-case@1.0.3:
     resolution: {integrity: sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==}
@@ -6829,6 +6868,23 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
+  '@splinetool/react-spline@4.0.0(@splinetool/runtime@1.10.18)(next@15.2.4(@babel/core@7.27.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@splinetool/runtime': 1.10.18
+      blurhash: 2.0.5
+      lodash.debounce: 4.0.8
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      react-merge-refs: 2.1.1
+      thumbhash: 0.1.1
+    optionalDependencies:
+      next: 15.2.4(@babel/core@7.27.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+
+  '@splinetool/runtime@1.10.18':
+    dependencies:
+      on-change: 4.0.2
+      semver-compare: 1.0.0
+
   '@standard-schema/spec@1.0.0': {}
 
   '@standard-schema/utils@0.3.0': {}
@@ -6948,6 +7004,8 @@ snapshots:
   '@types/stack-utils@2.0.3': {}
 
   '@types/stats.js@0.17.4': {}
+
+  '@types/swiper@5.4.3': {}
 
   '@types/three@0.169.0':
     dependencies:
@@ -7198,6 +7256,8 @@ snapshots:
   big-integer@1.6.52: {}
 
   binary-extensions@2.3.0: {}
+
+  blurhash@2.0.5: {}
 
   bplist-creator@0.1.0:
     dependencies:
@@ -8528,6 +8588,8 @@ snapshots:
 
   object-hash@3.0.0: {}
 
+  on-change@4.0.2: {}
+
   on-finished@2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -8769,6 +8831,8 @@ snapshots:
 
   react-is@19.1.0: {}
 
+  react-merge-refs@2.1.1: {}
+
   react-native-edge-to-edge@1.6.0(react-native@0.80.0(@babel/core@7.27.7)(@types/react@19.1.8)(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
@@ -9001,6 +9065,8 @@ snapshots:
   scheduler@0.25.0: {}
 
   scheduler@0.26.0: {}
+
+  semver-compare@1.0.0: {}
 
   semver@6.3.1: {}
 
@@ -9313,6 +9379,8 @@ snapshots:
   three@0.177.0: {}
 
   throat@5.0.0: {}
+
+  thumbhash@0.1.1: {}
 
   tiny-case@1.0.3: {}
 
