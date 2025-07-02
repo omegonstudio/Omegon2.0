@@ -536,7 +536,7 @@ useEffect(() => {
 
 
 {/* Service Section */}
-<section id="services" className="relative z-10 pt-6 px-4 sm:px-6">
+<section id="services" className="relative z-10 pt-20 px-4 sm:px-6">
   <div className="container mx-auto">
     <div className="text-center mb-12 sm:mb-16">
       <h2>
@@ -580,7 +580,7 @@ useEffect(() => {
 
 
 {/* Projects Section */}
-<section id="projects" className="relative z-10 pt-8 pb-20 px-4 sm:px-6">
+<section id="projects" className="relative z-10 pt-20 pb-20 px-4 sm:px-6">
   <div className="container mx-auto">
     <div className="text-center mb-12 sm:mb-16">
       <h2>
@@ -637,7 +637,7 @@ useEffect(() => {
 
 
  {/* About Section */}
-<section id="about" className="relative z-10 pt-5 px-6">
+<section id="about" className="relative z-10 pt-20 px-6">
   <div className="container mx-auto">
     <div className="text-center mb-16">
  <h2>
@@ -706,7 +706,7 @@ useEffect(() => {
 
 
       {/* Contact Section */}
-<section id="contact" className="relative z-10 pt-5 pb-20 px-6">
+<section id="contact" className="relative z-10 pt-20 pb-20 px-6">
   <div className="container mx-auto">
     <div className="text-center mb-16">
     <h2>
