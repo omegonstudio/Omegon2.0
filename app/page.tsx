@@ -417,7 +417,7 @@ const formik = useFormik({
 
         <MobileNav className="backdrop-blur-md border-b border-white/10 bg-black/30 dark:bg-black/30 px-4 py-3">
           <MobileNavHeader>
-            <NavbarLogo src="/logo.svg" alt="Omegon" name="Omegon" />
+            <NavbarLogo src="/blanco.svg" alt="Omegon" name="Omegon" />
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
