@@ -118,6 +118,14 @@ const formik = useFormik({
 });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => setIsMobile(window.innerWidth < 768);
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
 
 
   // Custom cursor tracking
@@ -164,7 +172,7 @@ const formik = useFormik({
         title: <> Diseñamos con <strong>propósito</strong>, desarrollamos con <strong>precisión</strong></>,
         description: (
           <>
-            En Omegon, combinamos diseño con <strong>propósito</strong> y desarrollo con <strong>precisión</strong> para crear aplicaciones y sitios web que marcan la diferencia. Desde la conceptualización hasta el lanzamiento, nos enfocamos en la calidad, la innovación y la excelencia técnica. Sumate a la evolución digital con soluciones a medida que potencian tu negocio.
+             Desde la conceptualización hasta el lanzamiento, nos enfocamos en la calidad, la innovación y la excelencia técnica. Sumate a la evolución digital con soluciones a medida que potencian tu negocio.
           </>
         ),
         tags: ["Desarrollo web", "Desarrollo de apps", "Diseño UX/UI", "Automatizaciones"],
@@ -264,7 +272,7 @@ const formik = useFormik({
         title: <> We design with <strong>purpose</strong>, develop with <strong>precision</strong></>,
         description: (
           <>
-            At Omegon, we combine purposeful design and precise development to create applications and websites that make a difference. From conceptualization to launch, we focus on quality, innovation, and technical excellence. Join the digital evolution with custom solutions that empower your business
+          From conceptualization to launch, we focus on quality, innovation, and technical excellence. Join the digital evolution with custom solutions that empower your business
             <br />
             <span>
               We design with <strong>purpose</strong>, develop with <strong>precision</strong>.
@@ -368,33 +376,37 @@ const formik = useFormik({
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-4 h-4 bg-[#EDF252] rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-75 ease-out"
-        style={{
-          left: mousePosition.x - 8,
-          top: mousePosition.y - 8,
-          transform: "translate3d(0, 0, 0)", // Hardware acceleration
-        }}
-      />
+      {!isMobile && (
+        <>
+          {/* Custom Cursor */}
+          <div
+            ref={cursorRef}
+            className="fixed w-4 h-4 bg-[#EDF252] rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-75 ease-out"
+            style={{
+              left: mousePosition.x - 8,
+              top: mousePosition.y - 8,
+              transform: "translate3d(0, 0, 0)",
+            }}
+          />
 
-      {/* Cursor Trail */}
-      {cursorTrail.map((point, index) => (
-        <div
-          key={point.id}
-          className="fixed rounded-full pointer-events-none z-40 transition-all duration-150 ease-out"
-          style={{
-            left: point.x - 3,
-            top: point.y - 3,
-            width: `${6 + (index / cursorTrail.length) * 4}px`,
-            height: `${6 + (index / cursorTrail.length) * 4}px`,
-            backgroundColor: "#EDF252",
-            opacity: ((index + 1) / cursorTrail.length) * 0.6,
-            transform: `scale(${(index + 1) / cursorTrail.length}) translate3d(0, 0, 0)`,
-          }}
-        />
-      ))}
+          {/* Cursor Trail */}
+          {cursorTrail.map((point, index) => (
+            <div
+              key={point.id}
+              className="fixed rounded-full pointer-events-none z-40 transition-all duration-150 ease-out"
+              style={{
+                left: point.x - 3,
+                top: point.y - 3,
+                width: `${6 + (index / cursorTrail.length) * 4}px`,
+                height: `${6 + (index / cursorTrail.length) * 4}px`,
+                backgroundColor: "#EDF252",
+                opacity: ((index + 1) / cursorTrail.length) * 0.6,
+                transform: `scale(${(index + 1) / cursorTrail.length}) translate3d(0, 0, 0)`,
+              }}
+            />
+          ))}
+        </>
+      )}
 
    <div className="relative w-full">
       <Navbar className="fixed top-0 left-0 right-0 z-40">
