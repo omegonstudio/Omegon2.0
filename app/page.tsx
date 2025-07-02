@@ -499,7 +499,7 @@ const formik = useFormik({
       key={index}
       as="button"
       className="px-4 py-2 rounded-full text-[#7ABF5A] text-sm font-medium backdrop-blur-sm"
-      color="cyan"
+      color="#EDF252"
       speed="5s"
     >
       {tag}
@@ -662,7 +662,7 @@ const formik = useFormik({
           autoplay={{ delay:2500 }}
           breakpoints={{
             320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
+            640: { slidesPerView: 1 },
             1024: { slidesPerView: 2 },
           }}
           className="relative"
@@ -722,52 +722,77 @@ const formik = useFormik({
     </div>
 
     <div className="max-w-2xl mx-auto">
-      <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl">
-        <form
-          ref={formRef}
-          onSubmit={formik.handleSubmit}
-          className="space-y-6"
-        >
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.name}</label>
-            <Input
-              placeholder={currentContent.contact.form.name}
-              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 rounded-xl"
-              {...formik.getFieldProps("name")}
-            />
-          </div>
+     <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl">
+  <form
+    ref={formRef}
+    onSubmit={formik.handleSubmit}
+    className="space-y-6"
+  >
+    <div className="space-y-1.5">
+      <label className="text-sm font-medium text-gray-300 block">
+        {currentContent.contact.form.name}
+      </label>
+      <StarBorder
+        className="block px-2 py-2 rounded-xl text-[#7ABF5A] text-sm font-medium backdrop-blur-sm w-full"
+        color="#EDF252"
+        speed="5s"
+      >
+        <Input
+          placeholder={currentContent.contact.form.name}
+          className="bg-transparent border-none focus:ring-0 text-white placeholder:text-gray-500 rounded-xl w-full"
+          {...formik.getFieldProps("name")}
+        />
+      </StarBorder>
+    </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.email}</label>
-            <Input
-              id="email"
-              type="email"
-              placeholder={currentContent.contact.form.email}
-              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 rounded-xl"
-              {...formik.getFieldProps("email")}
-            />
-          </div>
+    <div className="space-y-1.5">
+      <label className="text-sm font-medium text-gray-300 block">
+        {currentContent.contact.form.email}
+      </label>
+      <StarBorder
+        className="block px-2 py-2 rounded-3xl text-[#7ABF5A] text-sm font-medium backdrop-blur-sm w-full"
+        color="#EDF252"
+        speed="5s"
+      >
+        <Input
+          id="email"
+          type="email"
+          placeholder={currentContent.contact.form.email}
+          className="bg-transparent border-none focus:ring-0 text-white placeholder:text-gray-500 rounded-xl w-full"
+          {...formik.getFieldProps("email")}
+        />
+      </StarBorder>
+    </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{currentContent.contact.form.message}</label>
-            <Textarea
-              id="message"
-              placeholder={currentContent.contact.form.message}
-              className="bg-white/5 border-white/20 focus:border-[#EDF252] text-white placeholder:text-gray-500 min-h-[120px] rounded-xl"
-              {...formik.getFieldProps("message")}
-            />
-          </div>
+    <div className="space-y-1.5">
+      <label className="text-sm font-medium text-gray-300 block">
+        {currentContent.contact.form.message}
+      </label>
+      <StarBorder
+        className=" rounded-xl text-[#7ABF5A] text-sm font-medium backdrop-blur-sm w-full"
+        color="#EDF252"
+        speed="5s"
+      >
+        <Textarea
+          id="message"
+          placeholder={currentContent.contact.form.message}
+          className="bg-transparent border-none focus:ring-0 text-white placeholder:text-gray-500 min-h-[120px] rounded-xl w-full"
+          {...formik.getFieldProps("message")}
+        />
+      </StarBorder>
+    </div>
 
-          <Button
-            type="submit"
-            disabled={formik.isSubmitting}
-            className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25 rounded-xl"
-          >
-            <Mail className="w-4 w-4 mr-2" />
-            {currentContent.contact.form.submit}
-          </Button>
-        </form>
-      </Card>
+    <Button
+      type="submit"
+      disabled={formik.isSubmitting}
+      className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
+    >
+      <Mail className="w-4 h-4 mr-2" />
+      {currentContent.contact.form.submit}
+    </Button>
+  </form>
+</Card>
+
     </div>
   </div>
 
