@@ -466,7 +466,7 @@ const formik = useFormik({
     </div>
 
       {/* Hero Section */}
- <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-12">
+ <section className="relative z-10 min-h-svh w-screen bg-gradient-to-br from-[#000] to-[#1A2428] text-white flex flex-col items-center justify-center px-6 pt-20 pb-10">
   <div className="absolute inset-0 z-0">
 {/* <HeroSplineBackground/> */}
   <Beams
@@ -534,7 +534,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 no-wrap"
             />
        </div>
       </h2>
@@ -578,7 +578,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+          className="text-3xl sm:text-3xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
             />
       </div>
       </h2>
@@ -635,7 +635,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 no-wrap"
             />
       </div>
 
@@ -648,8 +648,8 @@ const formik = useFormik({
       </p>
     </div>
 
-    <div className="w-full flex justify-center relative">
-      <div className="w-[90%] md:w-[70%]">
+    <div className="w-full flex justify-center relative mx-auto">
+      <div className="w-[90%] md:w-[70%] min-w-[280px]">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={10}
@@ -704,7 +704,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 no-wrap"
             />
       </div>
     </h2>
