@@ -797,7 +797,7 @@ useEffect(() => {
     <Button
       type="submit"
       disabled={formik.isSubmitting}
-      className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
+      className="w-full bg-[#EDF252] text-black hover:bg-[#EDF252]/90 font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EDF252]/25"
     >
       <Mail className="w-4 h-4 mr-2" />
       {currentContent.contact.form.submit}
