@@ -534,7 +534,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 no-wrap"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
             />
        </div>
       </h2>
@@ -635,7 +635,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 no-wrap"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
             />
       </div>
 
@@ -704,7 +704,7 @@ const formik = useFormik({
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 no-wrap"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
             />
       </div>
     </h2>
