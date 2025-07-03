@@ -72,7 +72,7 @@ const projects = [
     id: 3,
     title: "AIAssist",
     description:
-      "Diseño moderno para empresa de seguros de mobiles.",
+      "Diseño moderno para empresa de seguros de celulares.",
     imageUrl: "/assets/telefono.png",
     link: "https://iassist-xi.vercel.app/",
   },
