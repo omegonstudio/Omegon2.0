@@ -411,7 +411,7 @@ useEffect(() => {
    <div className="relative w-full">
       <Navbar className="fixed top-0 left-0 right-0 z-40">
         <NavBody className="backdrop-blur-md border-b border-white/10 bg-black/30 dark:bg-black/30 px-6 py-4">
-          <NavbarLogo src="/blanco.svg" alt="Omegon" name="Omegon" />
+          <NavbarLogo src="/blanco.svg" alt="Omegon logo" name="Omegon" />
           <NavItems
             items={navItems}
             className="text-white hover:text-[#EDF252]"
@@ -429,7 +429,7 @@ useEffect(() => {
 
         <MobileNav className="backdrop-blur-md border-b border-white/10 bg-black/30 dark:bg-black/30 px-4 py-3">
           <MobileNavHeader>
-            <NavbarLogo src="/blanco.svg" alt="Omegon" name="Omegon" />
+            <NavbarLogo src="/blanco.svg" alt="Omegon logo" name="Omegon" />
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
