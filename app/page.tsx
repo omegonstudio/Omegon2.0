@@ -29,7 +29,6 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 
-import { useTranslations } from "next-intl";
 import ProfileCard from "@/components/ui/profileCard/profileCard"
 import BlurText from "@/components/ui/blurText"
 
@@ -39,7 +38,6 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Link from "next/link"
-import HeroSplineBackground from "@/components/blocks/galaxy-interactive-hero-section"
 import Beams from "@/components/beams"
 
 
@@ -80,7 +78,6 @@ const projects = [
 
 export default function OmegonLanding() {
   const [language, setLanguage] = useState<"es" | "en">("es")
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [cursorTrail, setCursorTrail] = useState<Array<{ x: number; y: number; id: number }>>([])
   const cursorRef = useRef<HTMLDivElement>(null)
@@ -214,6 +211,7 @@ useEffect(() => {
           {
             name: "Agustín Rodríguez",
             image: "/TITO.webp",
+            mobileImage:"/TITOm.webp",
             title:"Software Developer",
             handle:"AgusRodriguez",
             status:"Online",
@@ -223,6 +221,7 @@ useEffect(() => {
           {
             name: "Eugenia Galleguillo",
             image: "/EUGE.webp",
+            mobileImage: "/EUGEm.webp",
             title:"Graphic Designer",
             handle:"EugeGalleguillo",
             status:"Online",
@@ -232,6 +231,7 @@ useEffect(() => {
               {
             name: "Martina Fraga",
             image: "/MARTI.webp",
+            mobileImage: "/MARTIm.webp",
             title:"Marketing Specialist",
             handle:"MartiFraga",
             status:"Online",
@@ -317,6 +317,7 @@ useEffect(() => {
           {
             name: "Agus Rodríguez",
             image: "/TITO.webp",
+            mobileImage: "/TITOm.webp",
             title: "Software Developer",
             handle: "AgustinRodriguez",
             status: "Online",
@@ -326,6 +327,7 @@ useEffect(() => {
           {
             name: "Eugenia Galleguillo",
             image: "/EUGE.webp",
+            mobileImage: "/EUGEm.webp",
             title:"Graphic designer",
             handle: "EugeniaGalleguillo",
             status: "Online",
@@ -335,6 +337,7 @@ useEffect(() => {
         {
             name: "Martina Fraga",
             image: "/MARTI.webp",
+            mobileImage: "/MARTIm.webp",
             title:"Marketing Specialist",
             handle:"MartiFraga",
             status:"Online",
@@ -344,6 +347,7 @@ useEffect(() => {
               {
             name: "Martina Marquez",
             image: "/MAR.webp",
+            mobileImage: "/MARm.webp",
             title:"Community Manager",
             handle:"MarMarquezz",
             status:"Online",
