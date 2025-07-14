@@ -65,7 +65,7 @@ const projects = [
     title: "Lead Magnet",
     description:
       "Proyecto con diseño simple fluido para empresa de IA & automation.",
-    imageUrl: "/assets/telefono.png",
+    imageUrl: "/assets/telefono.webp",
     link: "https://aiqwavelabscom.vercel.app/",
   },
   {
@@ -73,7 +73,7 @@ const projects = [
     title: "AIAssist",
     description:
       "Diseño moderno para empresa de seguros de celulares.",
-    imageUrl: "/assets/telefono.png",
+    imageUrl: "/assets/telefono.webp",
     link: "https://iassist-xi.vercel.app/",
   },
 ]
@@ -213,7 +213,7 @@ useEffect(() => {
         team: [
           {
             name: "Agustín Rodríguez",
-            image: "/TITO.png",
+            image: "/TITO.webp",
             title:"Software Developer",
             handle:"AgusRodriguez",
             status:"Online",
@@ -222,7 +222,7 @@ useEffect(() => {
           },
           {
             name: "Eugenia Galleguillo",
-            image: "/EUGE.png",
+            image: "/EUGE.webp",
             title:"Graphic Designer",
             handle:"EugeGalleguillo",
             status:"Online",
@@ -231,7 +231,7 @@ useEffect(() => {
           },
               {
             name: "Martina Fraga",
-            image: "/FRAGA.png",
+            image: "/MARTI.webp",
             title:"Marketing Specialist",
             handle:"MartiFraga",
             status:"Online",
@@ -240,7 +240,7 @@ useEffect(() => {
           },
               {
             name: "Martina Marquez",
-            image: "/MAR.png",
+            image: "/MAR.webp",
             title:"Community Manager",
             handle:"MarMarquez",
             status:"Online",
@@ -316,7 +316,7 @@ useEffect(() => {
         team: [
           {
             name: "Agus Rodríguez",
-            image: "/TITO.png",
+            image: "/TITO.webp",
             title: "Software Developer",
             handle: "AgustinRodriguez",
             status: "Online",
@@ -325,7 +325,7 @@ useEffect(() => {
           },
           {
             name: "Eugenia Galleguillo",
-            image: "/EUGE.png",
+            image: "/EUGE.webp",
             title:"Graphic designer",
             handle: "EugeniaGalleguillo",
             status: "Online",
@@ -334,7 +334,7 @@ useEffect(() => {
           },
         {
             name: "Martina Fraga",
-            image: "/FRAGA.png",
+            image: "/MARTI.webp",
             title:"Marketing Specialist",
             handle:"MartiFraga",
             status:"Online",
@@ -343,7 +343,7 @@ useEffect(() => {
           },
               {
             name: "Martina Marquez",
-            image: "/MAR.png",
+            image: "/MAR.webp",
             title:"Community Manager",
             handle:"MarMarquezz",
             status:"Online",
