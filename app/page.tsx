@@ -74,6 +74,14 @@ const projects = [
     imageUrl: "/assets/telefono.webp",
     link: "https://iassist-xi.vercel.app/",
   },
+    {
+    id: 4,
+    title: "Invitacion Boda",
+    description:
+      "Invitación de boda digital, Diseño elegante y personalizado. ",
+    imageUrl: "/assets/telefono.webp",
+    link: "https://portfolio-invitacion.vercel.app/",
+  },
 ]
 
 export default function OmegonLanding() {
@@ -588,15 +596,15 @@ useEffect(() => {
   <div className="container mx-auto">
     <div className="text-center mb-12 sm:mb-16">
       <h2>
-         <div className="flex justify-center">
-        <BlurText
-          text={currentContent.project.title}
-          delay={150}
-          animateBy="words"
-          direction="top"
-          className="text-3xl sm:text-3xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
-            />
-      </div>
+        <div className="flex justify-center">
+          <BlurText
+            text={currentContent.project.title}
+            delay={150}
+            animateBy="words"
+            direction="top"
+            className="text-3xl sm:text-3xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
+          />
+        </div>
       </h2>
 
       <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
@@ -604,37 +612,57 @@ useEffect(() => {
       </p>
     </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-      {projects.map((project) => (
-        <Card
-          key={project.id}
-          className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
+    <div className="w-full flex justify-center relative mx-auto">
+      <div className="w-[90%] md:w-[80%] min-w-[280px]">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          loop={true}
+          autoplay={{ delay: 3000 }}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="pb-12"
         >
-          <div className="w-full h-full flex items-center justify-center p-4 sm:p-6">
-            <div className="text-center space-y-3">
-              <Code className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-[#7ABF5A] group-hover:text-[#EDF252] transition-colors duration-300" />
-              <h3 className="text-base sm:text-lg font-semibold text-white">
-                 {project.title}
-              </h3>
-              <p className="text-sm sm:text-base text-gray-400">{project.description}</p>
-              <Button
-                asChild
-                variant="outline"
-                className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] transition mt-2 rounded-xl"
-              >
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  {currentContent.project.button}
-                </a>
-              </Button>
-            </div>
-          </div>
-        </Card>
-      ))}
+          {projects.map((project) => (
+            <SwiperSlide key={project.id}>
+              <Card className="p-8 backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl h-full">
+                <div className="w-full h-full flex items-center justify-center p-4 sm:p-6">
+                  <div className="text-center space-y-3">
+                    <Code className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-[#7ABF5A] group-hover:text-[#EDF252] transition-colors duration-300" />
+                    <h3 className="text-base sm:text-lg font-semibold text-white">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-400">
+                      {project.description}
+                    </p>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-[#7ABF5A] text-[#7ABF5A] font-semibold hover:bg-[#7ABF5A] hover:text-[#17261E] transition mt-2 rounded-xl"
+                    >
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2"
+                      >
+                        {currentContent.project.button}
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   </div>
 </section>
