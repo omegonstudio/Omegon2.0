@@ -234,7 +234,7 @@ useEffect(() => {
             handle:"EugeGalleguillo",
             status:"Online",
             contactTex:"Contactame",
-            link:"hhttps://www.linkedin.com/in/eugenia-galleguillo-8282a71a4/",
+            link:"https://www.linkedin.com/in/eugenia-galleguillo-8282a71a4/",
           },
               {
             name: "Martina Fraga",
@@ -340,7 +340,7 @@ useEffect(() => {
             handle: "EugeniaGalleguillo",
             status: "Online",
             contactTex: "Contact Me",
-           link:"hhttps://www.linkedin.com/in/eugenia-galleguillo-8282a71a4/",
+           link:"https://www.linkedin.com/in/eugenia-galleguillo-8282a71a4/",
           },
         {
             name: "Martina Fraga",
