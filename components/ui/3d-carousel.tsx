@@ -156,8 +156,8 @@ export function ThreeDLogoCarousel() {
   const cards = useMemo(() => logos, [])
 
   useEffect(() => {
-    console.log("Loaded logos:", cards)
-  }, [cards])
+/*     console.log("Loaded logos:", cards)
+ */  }, [cards])
 
   return (
     <div className="relative h-[300px] w-full overflow-hidden">

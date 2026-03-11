@@ -840,46 +840,46 @@ export default function OmegonLanding() {
               {currentContent.about.description}
             </p>
           </div>
-<div className="w-full max-w-5xl mx-auto overflow-hidden">
-  {mounted && (
-    <Swiper
-      key="team-swiper"
-      modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={40}
-      slidesPerView={1}
-      breakpoints={{
-        768: { slidesPerView: 2 },
-        1280: { slidesPerView: 3 },
-      }}
-      navigation
-      autoplay={{ delay: 2500 }}
-      observer
-      observeParents
-      loop
-      className="w-full"
-    >
-      {currentContent.about.team.map((member, index) => (
-        <SwiperSlide key={index} className="flex justify-center py-10">
-          <ProfileCard
-            name={member.name}
-            title={member.title}
-            handle={member.handle}
-            status={member.status}
-            contactText="Contact Me"
-            avatarUrl={member.image || "/placeholder.svg"}
-            showUserInfo
-            enableTilt
-            onContactClick={() =>
-              member.link && window.open(member.link, "_blank")
-            }
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  )}
-</div>
-
-
+          <div className="w-full flex justify-center relative mx-auto">
+            <div className="w-full max-w-5xl mx-auto">
+            {mounted && (
+              <Swiper
+                key="team-swiper"
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={40}
+                slidesPerView={2}
+                breakpoints={{
+                  768: { slidesPerView: 2 },
+                  1280: { slidesPerView: 3 },
+                }}
+                navigation
+                autoplay={{ delay: 2500 }}
+                observer
+                observeParents
+                loop
+                className="w-full"
+              >
+                {currentContent.about.team.map((member, index) => (
+                  <SwiperSlide key={index} className="flex justify-center py-10">
+                    <ProfileCard
+                      name={member.name}
+                      title={member.title}
+                      handle={member.handle}
+                      status={member.status}
+                      contactText="Contact Me"
+                      avatarUrl={member.image || "/placeholder.svg"}
+                      showUserInfo
+                      enableTilt
+                      onContactClick={() =>
+                        member.link && window.open(member.link, "_blank")
+                      }
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
+          </div>
+        </div>
         </div>
       </section>
 
