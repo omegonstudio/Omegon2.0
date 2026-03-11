@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import StarBorder from "@/components/ui/StarBorder";
 import Image from "next/image";
-import { ThreeDLogoCarousel } from "@/components/ui/3d-carousel";
 import CalendlyModal from "@/components/Calendly/CalendyModal";
 
 import { useFormik } from "formik";
@@ -39,20 +38,40 @@ import {
 } from "@/components/ui/resizable-navbar";
 
 import ProfileCard from "@/components/ui/profileCard/profileCard";
-import BlurText from "@/components/ui/blurText";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
+import dynamic from "next/dynamic";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
-import Beams from "@/components/beams";
+import { SwiperSlide } from "swiper/react";
+
+
+
+const Swiper = dynamic(() =>
+  import("swiper/react").then((mod) => mod.Swiper),
+  { ssr: false }
+);
+
+
+const BlurText = dynamic(() => import("@/components/ui/blurText"), {
+  ssr: false,
+});
+
+const ThreeDLogoCarousel = dynamic(
+  () => import("@/components/ui/3d-carousel").then((mod) => mod.ThreeDLogoCarousel),
+  { ssr: false }
+);
+
+const Beams = dynamic(() => import("@/components/beams"), { ssr: false });
 
 interface OmegonNavbarProps {
   language: string;
   setLanguage: (lang: string) => void;
 }
+
+
 
 const projects = [
   {
@@ -164,6 +183,7 @@ const projects = [
 
 export default function OmegonLanding() {
   const [language, setLanguage] = useState<"es" | "en">("es");
+  const [mounted, setMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorTrail, setCursorTrail] = useState<
     Array<{ x: number; y: number; id: number }>
@@ -174,6 +194,11 @@ export default function OmegonLanding() {
   const formRef = useRef<HTMLFormElement>(null);
   const [openCalendly, setOpenCalendly] = useState(false);
   const calendlyUrl = "https://calendly.com/omegon-info/30min";
+
+  // Ensure hydration completes before rendering Swiper
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const validationSchema = Yup.object({
     name: Yup.string().required("El nombre es obligatorio"),
@@ -663,7 +688,7 @@ export default function OmegonLanding() {
       <section id="services" className="relative z-10 pt-20 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <h2>
+            
               <div className="flex justify-center">
                 <BlurText
                   text={currentContent.services.title}
@@ -673,7 +698,7 @@ export default function OmegonLanding() {
                   className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
                 />
               </div>
-            </h2>
+            
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-6xl mx-auto">
@@ -706,24 +731,23 @@ export default function OmegonLanding() {
 
       {/* Projects Section */}
 
-      <section id="projects" className="relative z-10 pt-32 pb-32 px-6">
-        <div className="container mx-auto max-w-7xl">
-          {/* TITLE */}
 
-          <div className="text-center mb-20">
-            <BlurText
-              text={currentContent.project.title}
-              delay={150}
-              animateBy="words"
-              direction="top"
-              className="text-4xl md:text-5xl font-bold mb-4"
-            />
-
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              {currentContent.project.subtitle}
-            </p>
+  <section id="projects" className="relative z-10 pt-20 px-4 sm:px-6">
+        <div className="container mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            
+              <div className="flex justify-center">
+                <BlurText
+                  text={currentContent.project.title}
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
+                />
+              </div>
+            
           </div>
-
+   
           {/* FEATURED PROJECT */}
 
           <Link
@@ -797,7 +821,7 @@ export default function OmegonLanding() {
       <section id="about" className="relative z-10 pt-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2>
+          
               <div className="flex justify-center">
                 <BlurText
                   text={currentContent.about.title}
@@ -807,7 +831,7 @@ export default function OmegonLanding() {
                   className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
                 />
               </div>
-            </h2>
+           
 
             <h3 className="text-xl md:text-2xl text-[#EDF252] mb-6">
               {currentContent.about.subtitle}
@@ -816,49 +840,46 @@ export default function OmegonLanding() {
               {currentContent.about.description}
             </p>
           </div>
+<div className="w-full max-w-5xl mx-auto overflow-hidden">
+  {mounted && (
+    <Swiper
+      key="team-swiper"
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={40}
+      slidesPerView={1}
+      breakpoints={{
+        768: { slidesPerView: 2 },
+        1280: { slidesPerView: 3 },
+      }}
+      navigation
+      autoplay={{ delay: 2500 }}
+      observer
+      observeParents
+      loop
+      className="w-full"
+    >
+      {currentContent.about.team.map((member, index) => (
+        <SwiperSlide key={index} className="flex justify-center py-10">
+          <ProfileCard
+            name={member.name}
+            title={member.title}
+            handle={member.handle}
+            status={member.status}
+            contactText="Contact Me"
+            avatarUrl={member.image || "/placeholder.svg"}
+            showUserInfo
+            enableTilt
+            onContactClick={() =>
+              member.link && window.open(member.link, "_blank")
+            }
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  )}
+</div>
 
-          <div className="w-full flex justify-center relative mx-auto">
-            <div className="w-[90%] md:w-[70%] min-w-[280px]">
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={10}
-                slidesPerView={2}
-                navigation={{
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-                }}
-                loop={true}
-                autoplay={{ delay: 2500 }}
-                breakpoints={{
-                  320: { slidesPerView: 1 },
-                  640: { slidesPerView: 1 },
-                  1024: { slidesPerView: 2 },
-                }}
-                className="relative"
-              >
-                {currentContent.about.team.map((member, index) => (
-                  <SwiperSlide
-                    key={index}
-                    className="flex justify-center py-10 min-h-[560px] md:min-h-[620px]"
-                  >
-                    <ProfileCard
-                      name={member.name}
-                      title={member.title}
-                      handle={member.handle}
-                      status={member.status}
-                      contactText="Contact Me"
-                      avatarUrl={member.image || "/placeholder.svg"}
-                      showUserInfo={true}
-                      enableTilt={true}
-                      onContactClick={() =>
-                        member.link && window.open(member.link, "_blank")
-                      }
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </div>
+
         </div>
       </section>
 

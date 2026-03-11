@@ -121,21 +121,10 @@ const nextConfig = {
   // Generate ETags
   generateEtags: true,
 
-  // Enable SWR (Stale-While-Revalidate) for incremental static regeneration
-  swcMinify: true,
-
   // Experimental features for better performance
   experimental: {
     // Optimize CSS-in-JS
     optimizeCss: true,
-    // Optimize fonts
-    optimizeFonts: true,
-  },
-
-  // Internationalization setup (optional, for language support)
-  i18n: {
-    locales: ["es-AR", "es"],
-    defaultLocale: "es-AR",
   },
 };
 

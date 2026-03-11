@@ -34,3 +34,23 @@
     }
   }
 }
+
+/* SWIPER FIX */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
