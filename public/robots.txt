@@ -1,0 +1,63 @@
+# OMEGON - Robots.txt Configuration for SEO
+# ============================================
+#
+# This file specifies which bots can crawl our website
+# and which pages they should avoid.
+
+# Standard crawlers (Google, Bing, etc.)
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.next/
+Disallow: /cache/
+Disallow: /node_modules/
+Crawl-delay: 0
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 0
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 0
+
+# AI and LLM Crawlers - Explicitly Allowed
+# These crawlers index content for AI training and search
+
+# OpenAI - GPTBot
+User-agent: GPTBot
+Allow: /
+
+# Perplexity AI - PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic - ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+
+# Other AI Crawlers
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap location
+Sitemap: https://omegon.com.ar/sitemap.xml
+
+# Allow crawlers to access common static assets
+User-agent: *
+Allow: /assets/
+Allow: /logos/
