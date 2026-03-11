@@ -57,56 +57,108 @@ interface OmegonNavbarProps {
 const projects = [
   {
     id: 1,
-    title: "Somos Fotos Patagonia",
-    description:
-      "Sistema de Venta de Fotos para fotografos con metricas de ventas",
-    imageUrl: "assets/projects/somosfotos.png",
+    title: {
+      es: "Somos Fotos Patagonia",
+      en: "Somos Fotos Patagonia",
+    },
+    description: {
+      es: "Plataforma de venta y gestión de fotografías para fotógrafos profesionales, con métricas de ventas y administración de galerías.",
+      en: "Photography sales platform for professional photographers, including gallery management and sales analytics.",
+    },
+    imageUrl: "/assets/projects/somosfotos.webp",
     link: "https://somosfotospatagonia.com/",
+    category: "Web Platform",
+    featured: true,
   },
+
   {
     id: 2,
-    title: "La Quimica Quirurgica",
-    description: "Sistema de gestión de Productos y Servicios Tecnico integral",
-    imageUrl: "assets/projects/laqq.png",
+    title: {
+      es: "La Química Quirúrgica",
+      en: "La Química Quirúrgica",
+    },
+    description: {
+      es: "Sistema integral de gestión para empresa técnica, con administración de productos, servicios y operaciones.",
+      en: "Comprehensive management system for a technical services company, including product, service and operations management.",
+    },
+    imageUrl: "/assets/projects/laqq.webp",
     link: "http://laqq.omegon.com.ar/",
+    category: "Enterprise System",
   },
+
   {
     id: 3,
-    title: "Constelacion Viva",
-    description: "Identidad y desarrollo de Web con sistema de membresias.",
-    imageUrl: "assets/projects/constelacionviva.png",
+    title: {
+      es: "Constelación Viva",
+      en: "Constelación Viva",
+    },
+    description: {
+      es: "Diseño de identidad y desarrollo de plataforma web con sistema de membresías y gestión de contenidos.",
+      en: "Brand identity and web platform development with membership system and content management.",
+    },
+    imageUrl: "/assets/projects/constelacionviva.webp",
     link: "https://constelacionviva.com/",
+    category: "Membership Platform",
   },
-  {
-    id: 3,
-    title: "Yamila Velay",
-    description:
-      "Identidad visual espiritual y funcionalidad personalizada para una terapeuta holística.",
-    imageUrl: "assets/projects/somosfotos.png",
-    link: "https://yamilavelay.com/",
-  },
+
   {
     id: 4,
-    title: "Lead Magnet",
-    description:
-      "Proyecto con diseño simple fluido para empresa de IA & automation.",
-    imageUrl: "assets/projects/somosfotos.png",
-    link: "https://aiqwavelabscom.vercel.app/",
+    title: {
+      es: "Yamila Velay",
+      en: "Yamila Velay",
+    },
+    description: {
+      es: "Diseño de identidad visual y desarrollo web para terapeuta holística, combinando estética simbólica y experiencia de usuario.",
+      en: "Visual identity and website development for a holistic therapist, combining symbolic aesthetics and UX design.",
+    },
+    imageUrl: "/assets/projects/yamila.webp",
+    link: "https://yamilavelay.com/",
+    category: "Branding + Website",
   },
+
   {
     id: 5,
-    title: "AIAssist",
-    description: "Diseño moderno para empresa de seguros de celulares.",
-    imageUrl: "assets/projects/somosfotos.png",
-    link: "https://iassist-xi.vercel.app/",
+    title: {
+      es: "Lead Magnet",
+      en: "Lead Magnet",
+    },
+    description: {
+      es: "Landing optimizada para captación de leads con enfoque en automatización e integración con herramientas de marketing.",
+      en: "Lead generation landing page optimized for marketing automation and integrations.",
+    },
+    imageUrl: "/assets/projects/leadmagnet.webp",
+    link: "https://aiqwavelabscom.vercel.app/",
+    category: "Marketing Automation",
   },
+
   {
     id: 6,
-    title: "Invitacion Boda",
-    description:
-      "Invitación de boda digital, Diseño elegante y personalizado. ",
-    imageUrl: "assets/projects/somosfotos.png",
+    title: {
+      es: "AIAssist",
+      en: "AIAssist",
+    },
+    description: {
+      es: "Diseño y desarrollo de plataforma web moderna para empresa de seguros de dispositivos móviles.",
+      en: "Modern web platform design and development for a mobile device insurance company.",
+    },
+    imageUrl: "/assets/projects/aiassist.webp",
+    link: "https://iassist-xi.vercel.app/",
+    category: "Corporate Website",
+  },
+
+  {
+    id: 7,
+    title: {
+      es: "Invitación de Boda",
+      en: "Wedding Invitation",
+    },
+    description: {
+      es: "Invitación digital interactiva con diseño elegante y experiencia personalizada para eventos.",
+      en: "Interactive digital wedding invitation with elegant design and personalized event experience.",
+    },
+    imageUrl: "/assets/projects/boda.webp",
     link: "https://portfolio-invitacion.vercel.app/",
+    category: "Interactive Experience",
   },
 ];
 
@@ -654,9 +706,11 @@ export default function OmegonLanding() {
 
       {/* Projects Section */}
 
-      <section id="projects" className="relative z-10 pt-24 pb-24 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
+      <section id="projects" className="relative z-10 pt-32 pb-32 px-6">
+        <div className="container mx-auto max-w-7xl">
+          {/* TITLE */}
+
+          <div className="text-center mb-20">
             <BlurText
               text={currentContent.project.title}
               delay={150}
@@ -670,34 +724,68 @@ export default function OmegonLanding() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+          {/* FEATURED PROJECT */}
+
+          <Link
+            href={projects[0].link}
+            target="_blank"
+            className="group relative block mb-16 overflow-hidden rounded-3xl border border-white/10"
+          >
+            <div className="relative w-full h-[420px] md:h-[520px]">
+              <Image
+                src={projects[0].imageUrl}
+                alt={projects[0].title[language as "es" | "en"]}
+                fill
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            </div>
+
+            <div className="absolute bottom-0 p-8">
+              <h3 className="text-2xl md:text-3xl font-semibold text-white">
+                {projects[0].title[language as "es" | "en"]}
+              </h3>
+
+              <p className="text-gray-300 mt-2 max-w-lg">
+                {projects[0].description[language as "es" | "en"]}
+              </p>
+
+              <span className="inline-block mt-4 text-[#EDF252] font-medium">
+                {currentContent.project.button} →
+              </span>
+            </div>
+          </Link>
+
+          {/* SECONDARY PROJECTS */}
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
+            {projects.slice(1, 5).map((project) => (
               <Link
                 key={project.id}
                 href={project.link}
                 target="_blank"
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black"
+                className="group relative block overflow-hidden rounded-2xl border border-white/10"
               >
-                <div className="relative h-[260px] w-full overflow-hidden">
-                  <img
+                <div className="relative h-[280px]">
+                  <Image
                     src={project.imageUrl}
-                    alt={project.title}
-                    className="object-cover group-hover:scale-110 transition duration-700"
+                    alt={project.title[language as "es" | "en"]}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-110"
                   />
+
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition" />
                 </div>
 
-                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-semibold text-white">
-                    {project.title}
-                  </h3>
+                <div className="absolute bottom-0 p-6 opacity-0 group-hover:opacity-100 transition">
+                  <h4 className="text-xl font-semibold text-white">
+                    {project.title[language as "es" | "en"]}
+                  </h4>
 
-                  <p className="text-sm text-gray-300 mt-2">
-                    {project.description}
+                  <p className="text-sm text-gray-300 mt-1">
+                    {project.description[language as "es" | "en"]}
                   </p>
-
-                  <span className="mt-4 text-[#EDF252] text-sm font-medium">
-                    {currentContent.project.button} →
-                  </span>
                 </div>
               </Link>
             ))}
