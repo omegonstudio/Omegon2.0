@@ -734,7 +734,7 @@ export default function OmegonLanding() {
 
   <section id="projects" className="relative z-10 pt-20 px-4 sm:px-6">
         <div className="container mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-2 sm:mb-16">
             
               <div className="flex justify-center">
                 <BlurText
@@ -747,6 +747,12 @@ export default function OmegonLanding() {
               </div>
             
           </div>
+      <div className="text-center mb-6 sm:mb-16">
+           <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
+              {currentContent.project.subtitle}
+            </p>
+
+        </div>
    
           {/* FEATURED PROJECT */}
 
