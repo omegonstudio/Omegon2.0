@@ -90,7 +90,7 @@ const projects = [
     featured: true,
   },
 
-  {
+/*   {
     id: 2,
     title: {
       es: "La Química Quirúrgica",
@@ -103,7 +103,7 @@ const projects = [
     imageUrl: "/assets/projects/laqq.webp",
     link: "http://laqq.omegon.com.ar/",
     category: "Enterprise System",
-  },
+  }, */
 
   {
     id: 3,
@@ -160,7 +160,7 @@ const projects = [
       es: "Diseño y desarrollo de plataforma web moderna para empresa de seguros de dispositivos móviles.",
       en: "Modern web platform design and development for a mobile device insurance company.",
     },
-    imageUrl: "/assets/projects/aiassist.webp",
+    imageUrl: "/assets/projects/AiAssist.webp",
     link: "https://iassist-xi.vercel.app/",
     category: "Corporate Website",
   },
