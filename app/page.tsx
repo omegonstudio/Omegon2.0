@@ -344,11 +344,12 @@ export default function OmegonLanding() {
 
           },
                     {
-            name: "Adrian Pizzani",
+            name: "Adrian Pizani",
             image: "/adri.png",
             mobileImage: "/adri.png",
             title: "Project Manager - Backend Developer",
             status: "Online",
+            handle: "AdriPizani",
             contactTex: "Contactame",
             link: "https://www.linkedin.com/in/adrian-pizani-8a457015/",
 
