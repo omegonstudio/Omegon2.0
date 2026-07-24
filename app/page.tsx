@@ -345,8 +345,8 @@ export default function OmegonLanding() {
           },
                     {
             name: "Adrian Pizzani",
-            image: "/adri.webp",
-            mobileImage: "/adri.webp",
+            image: "/adri.png",
+            mobileImage: "/adri.png",
             title: "Project Manager - Backend Developer",
             status: "Online",
             contactTex: "Contactame",
