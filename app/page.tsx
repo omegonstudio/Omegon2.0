@@ -47,21 +47,18 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import { SwiperSlide } from "swiper/react";
 
-
-
-const Swiper = dynamic(() =>
-  import("swiper/react").then((mod) => mod.Swiper),
-  { ssr: false }
-);
-
+const Swiper = dynamic(() => import("swiper/react").then((mod) => mod.Swiper), {
+  ssr: false,
+});
 
 const BlurText = dynamic(() => import("@/components/ui/blurText"), {
   ssr: false,
 });
 
 const ThreeDLogoCarousel = dynamic(
-  () => import("@/components/ui/3d-carousel").then((mod) => mod.ThreeDLogoCarousel),
-  { ssr: false }
+  () =>
+    import("@/components/ui/3d-carousel").then((mod) => mod.ThreeDLogoCarousel),
+  { ssr: false },
 );
 
 const Beams = dynamic(() => import("@/components/beams"), { ssr: false });
@@ -70,8 +67,6 @@ interface OmegonNavbarProps {
   language: string;
   setLanguage: (lang: string) => void;
 }
-
-
 
 const projects = [
   {
@@ -90,7 +85,7 @@ const projects = [
     featured: true,
   },
 
-/*   {
+  /*   {
     id: 2,
     title: {
       es: "La Química Quirúrgica",
@@ -339,13 +334,24 @@ export default function OmegonLanding() {
         team: [
           {
             name: "Agustín Rodríguez",
-            image: "/TITO.webp",
-            mobileImage: "/TITOm.webp",
+            image: "/Agustin.webp",
+            mobileImage: "/Agustin.webp",
             title: "Software Developer",
             handle: "AgusRodriguez",
             status: "Online",
             contactTex: "Contactame",
             link: "https://www.linkedin.com/in/agustin-devfs",
+
+          },
+                    {
+            name: "Adrian Pizzani",
+            image: "/adri.webp",
+            mobileImage: "/adri.webp",
+            title: "Project Manager - Backend Developer",
+            status: "Online",
+            contactTex: "Contactame",
+            link: "https://www.linkedin.com/in/adrian-pizani-8a457015/",
+
           },
           {
             name: "Eugenia Galleguillo",
@@ -366,15 +372,6 @@ export default function OmegonLanding() {
             status: "Online",
             contactTex: "Contactame",
             link: "https://www.linkedin.com/in/martinafraga/",
-          },
-          {
-            name: "Martina Marquez",
-            image: "/MAR.webp",
-            title: "Community Manager",
-            handle: "MarMarquez",
-            status: "Online",
-            contactTex: "Contactame",
-            link: "https://www.linkedin.com/in/martimarquez/",
           },
         ],
       },
@@ -460,8 +457,8 @@ export default function OmegonLanding() {
         team: [
           {
             name: "Agus Rodríguez",
-            image: "/TITO.webp",
-            mobileImage: "/TITOm.webp",
+            image: "/Agustin.webp",
+            mobileImage: "/Agustin.webp",
             title: "Software Developer",
             handle: "AgustinRodriguez",
             status: "Online",
@@ -487,16 +484,6 @@ export default function OmegonLanding() {
             status: "Online",
             contactTex: "Contactame",
             link: "https://www.linkedin.com/in/martinafraga/",
-          },
-          {
-            name: "Martina Marquez",
-            image: "/MAR.webp",
-            mobileImage: "/MARm.webp",
-            title: "Community Manager",
-            handle: "MarMarquezz",
-            status: "Online",
-            contactTex: "Contactame",
-            link: "https://www.linkedin.com/in/martimarquez/",
           },
         ],
       },
@@ -688,17 +675,15 @@ export default function OmegonLanding() {
       <section id="services" className="relative z-10 pt-20 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            
-              <div className="flex justify-center">
-                <BlurText
-                  text={currentContent.services.title}
-                  delay={150}
-                  animateBy="words"
-                  direction="top"
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
-                />
-              </div>
-            
+            <div className="flex justify-center">
+              <BlurText
+                text={currentContent.services.title}
+                delay={150}
+                animateBy="words"
+                direction="top"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-6xl mx-auto">
@@ -731,29 +716,25 @@ export default function OmegonLanding() {
 
       {/* Projects Section */}
 
-
-  <section id="projects" className="relative z-10 pt-20 px-4 sm:px-6">
+      <section id="projects" className="relative z-10 pt-20 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="text-center mb-2 sm:mb-16">
-            
-              <div className="flex justify-center">
-                <BlurText
-                  text={currentContent.project.title}
-                  delay={150}
-                  animateBy="words"
-                  direction="top"
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
-                />
-              </div>
-            
+            <div className="flex justify-center">
+              <BlurText
+                text={currentContent.project.title}
+                delay={150}
+                animateBy="words"
+                direction="top"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
+              />
+            </div>
           </div>
-      <div className="text-center mb-6 sm:mb-16">
-           <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
+          <div className="text-center mb-6 sm:mb-16">
+            <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
               {currentContent.project.subtitle}
             </p>
+          </div>
 
-        </div>
-   
           {/* FEATURED PROJECT */}
 
           <Link
@@ -827,17 +808,15 @@ export default function OmegonLanding() {
       <section id="about" className="relative z-10 pt-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-          
-              <div className="flex justify-center">
-                <BlurText
-                  text={currentContent.about.title}
-                  delay={150}
-                  animateBy="words"
-                  direction="top"
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
-                />
-              </div>
-           
+            <div className="flex justify-center">
+              <BlurText
+                text={currentContent.about.title}
+                delay={150}
+                animateBy="words"
+                direction="top"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 flex justify-center no-wrap"
+              />
+            </div>
 
             <h3 className="text-xl md:text-2xl text-[#EDF252] mb-6">
               {currentContent.about.subtitle}
@@ -847,45 +826,48 @@ export default function OmegonLanding() {
             </p>
           </div>
           <div className="w-full flex justify-center relative mx-auto">
-            <div className="w-full max-w-5xl mx-auto">
-            {mounted && (
-              <Swiper
-                key="team-swiper"
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={40}
-                slidesPerView={2}
-                breakpoints={{
-                  768: { slidesPerView: 2 },
-                  1280: { slidesPerView: 3 },
-                }}
-                navigation
-                autoplay={{ delay: 2500 }}
-                observer
-                observeParents
-                loop
-                className="w-full"
-              >
-                {currentContent.about.team.map((member, index) => (
-                  <SwiperSlide key={index} className="flex justify-center py-10">
-                    <ProfileCard
-                      name={member.name}
-                      title={member.title}
-                      handle={member.handle}
-                      status={member.status}
-                      contactText="Contact Me"
-                      avatarUrl={member.image || "/placeholder.svg"}
-                      showUserInfo
-                      enableTilt
-                      onContactClick={() =>
-                        member.link && window.open(member.link, "_blank")
-                      }
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            )}
+            <div className="w-full max-w-6xl mx-auto">
+              {mounted && (
+                <Swiper
+                  key="team-swiper"
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={40}
+                  slidesPerView={2}
+                  breakpoints={{
+                    768: { slidesPerView: 2 },
+                    1280: { slidesPerView: 3 },
+                  }}
+                  navigation
+                  autoplay={{ delay: 2500 }}
+                  observer
+                  observeParents
+                  loop
+                  className="w-full"
+                >
+                  {currentContent.about.team.map((member, index) => (
+                    <SwiperSlide
+                      key={index}
+                      className="flex justify-center py-10"
+                    >
+                      <ProfileCard
+                        name={member.name}
+                        title={member.title}
+                        handle={member.handle}
+                        status={member.status}
+                        contactText="Contact Me"
+                        avatarUrl={member.image || "/placeholder.svg"}
+                        showUserInfo
+                        enableTilt
+                        onContactClick={() =>
+                          member.link && window.open(member.link, "_blank")
+                        }
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              )}
+            </div>
           </div>
-        </div>
         </div>
       </section>
 
