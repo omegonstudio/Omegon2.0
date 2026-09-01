@@ -69,8 +69,23 @@ interface OmegonNavbarProps {
 }
 
 const projects = [
-  {
+    {
     id: 1,
+    title: {
+      es: "La Química Quirúrgica",
+      en: "La Química Quirúrgica",
+    },
+    description: {
+      es: "Sistema integral de gestión para empresa técnica, con administración de productos, servicios y operaciones.",
+      en: "Comprehensive management system for a technical services company, including product, service and operations management.",
+    },
+    imageUrl: "/assets/projects/laqq.webp",
+    link: "http://laqq.com.ar/",
+    category: "Enterprise System",
+   featured: true,
+  },
+  {
+    id: 2,
     title: {
       es: "Somos Fotos Patagonia",
       en: "Somos Fotos Patagonia",
@@ -82,25 +97,11 @@ const projects = [
     imageUrl: "/assets/projects/somosfotos.webp",
     link: "https://somosfotospatagonia.com/",
     category: "Web Platform",
-    featured: true,
   },
 
-  /*   {
-    id: 2,
-    title: {
-      es: "La Química Quirúrgica",
-      en: "La Química Quirúrgica",
-    },
-    description: {
-      es: "Sistema integral de gestión para empresa técnica, con administración de productos, servicios y operaciones.",
-      en: "Comprehensive management system for a technical services company, including product, service and operations management.",
-    },
-    imageUrl: "/assets/projects/laqq.webp",
-    link: "http://laqq.omegon.com.ar/",
-    category: "Enterprise System",
-  }, */
+   
 
-  {
+  /*{
     id: 3,
     title: {
       es: "Constelación Viva",
@@ -113,7 +114,7 @@ const projects = [
     imageUrl: "/assets/projects/constelacionviva.webp",
     link: "https://constelacionviva.com/",
     category: "Membership Platform",
-  },
+  },*/
 
   {
     id: 4,
@@ -126,7 +127,7 @@ const projects = [
       en: "Visual identity and website development for a holistic therapist, combining symbolic aesthetics and UX design.",
     },
     imageUrl: "/assets/projects/yamila.webp",
-    link: "https://yamilavelay.com/",
+    link: "https://yamila-velay-landing-git-main-omegonstudios.vercel.app/",
     category: "Branding + Website",
   },
 
